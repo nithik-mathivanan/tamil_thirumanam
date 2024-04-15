@@ -1,6 +1,6 @@
-@extends('superadmin.layout')
-@section('content')
-@section('title','Tamil Thirumanam | Dashboard')
+
+<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
 <div class="content">
 					<div class="container-fluid">
 						<h4 class="page-title">Dashboard</h4>
@@ -454,4 +454,5 @@
 						</div>
 					</div>
 				</div>
-				@stop
+				<?php $__env->stopSection(); ?>
+<?php echo $__env->make('superadmin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\tamil_thirumanam\resources\views/superadmin/dashboard.blade.php ENDPATH**/ ?>
