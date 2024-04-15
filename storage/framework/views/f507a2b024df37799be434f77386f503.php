@@ -1,6 +1,6 @@
-@extends('superadmin.layout')
-@section('content')
-@section('title','Tamil Thirumanam | Dashboard')
+
+<?php $__env->startSection('content'); ?>
+<?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
 <style type="text/css">
 	
  .wrapper {
@@ -80,18 +80,18 @@
  </style>
 <div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title" id="ddd">Community</h4>
+						<h4 class="page-title" id="ddd">Job Type</h4>
 						<div class="row table-content">
 							<div class="col-md-8">
 								<div class="flash-section">
-								@if( Session::has( 'success' ))
-									     <div class="flash-message">{{ Session::get( 'success' ) }}</div>
-								@endif
+								<?php if( Session::has( 'success' )): ?>
+									     <div class="flash-message"><?php echo e(Session::get( 'success' )); ?></div>
+								<?php endif; ?>
 								</div>
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title">List / Add / Edit / Delete</div>
-										<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModel" data-whatever="@mdo">Create Community</button>
+										<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModel" data-whatever="@mdo">Create Job Type</button>
 									</div>
 									<div class="card-body">
 										
@@ -99,42 +99,40 @@
 											<thead>
 												<tr>
 													<th scope="col">#</th>
-													<th scope="col">Community</th>
-													<th scope="col">Religion</th>
-													<th scope="col">Action</th>
-													<th scope="col">Edit</th>
-													<th scope="col">Delete</th>
+													<th scope="col">Job Type</th>
+													<th scope="col" >Action</th>
+													<th scope="col" >Edit</th>
+													<th scope="col" >Delete</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php $i=1;?>
-												@foreach($community as $data)
+												<?php $__currentLoopData = $jobtype; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 												<tr>
-													<td>{{$i}}</td>
-													<td>{{$data->community}}</td>
-													<td>{{$data->getReligion->religion}}</td>
+													<td><?php echo e($i); ?></td>
+													<td><?php echo e($data->jobtype); ?></td>
 													<td>
 														<div class="group">
-														@if($data->status==0)
-															<input class="toggle toggle-switch" id="switch{{$i}}{{$i}}" value="{{$data->id}}" checked type="checkbox"/>
-														    <label class="toggle-btn" for="switch{{$i}}{{$i}}"></label>
-														@else
-														   <input class="toggle toggle-switch" id="switch{{$i}}{{$i}}" value="{{$data->id}}" type="checkbox"/>
-														    <label class="toggle-btn" for="switch{{$i}}{{$i}}"></label>
-														@endif
+														<?php if($data->status==0): ?>
+															<input class="toggle toggle-switch" id="switch<?php echo e($i); ?><?php echo e($i); ?>" value="<?php echo e($data->id); ?>" checked type="checkbox"/>
+														    <label class="toggle-btn" for="switch<?php echo e($i); ?><?php echo e($i); ?>"></label>
+														<?php else: ?>
+														   <input class="toggle toggle-switch" id="switch<?php echo e($i); ?><?php echo e($i); ?>" value="<?php echo e($data->id); ?>" type="checkbox"/>
+														    <label class="toggle-btn" for="switch<?php echo e($i); ?><?php echo e($i); ?>"></label>
+														<?php endif; ?>
 														</div>
 													</td>
 													<td>
-														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit({{$data->id}})"><i class="fa fa-pencil"></i></button>
+														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit(<?php echo e($data->id); ?>)"><i class="fa fa-pencil"></i></button>
 													</td>
 													<td>
-														<a href="{{url('admin/community/delete')}}/{{$data->id}}">
+														<a href="<?php echo e(url('admin/jobtype/delete')); ?>/<?php echo e($data->id); ?>">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>
 												<?php $i++; ?>
-												@endforeach
+												<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 											</tbody>
 										</table>
 									</div>
@@ -147,31 +145,23 @@
 				
 <!-- Create Model -->
 				<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<form method="post" action="{{route('store-community')}}">
-						{{csrf_field()}}
+					<form method="post" action="<?php echo e(route('store-jobtype')); ?>">
+						<?php echo e(csrf_field()); ?>
+
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Create Community</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">Job Type</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
 					       
+					     
 					          <div class="form-group">
-					            <label  class="col-form-label">Religion:</label>
-					            <select class="form-control" name="religion" required>
-					            	<option>Select Religion</option>
-					            	@foreach($religion as $data)
-					            	<option value="{{$data->id}}">{{$data->religion}}</option>
-					            	@endforeach
-					            	
-					            </select>
-					          </div>
-					          <div class="form-group">
-					            <label for="message-text" class="col-form-label">Comunity Name</label>
-					            <input class="form-control" name="community" placeholder="Enter Community Name" required>
+					            <label for="message-text" class="col-form-label">Job Type</label>
+					            <input class="form-control" name="jobtype" placeholder="Enter Job Type" required>
 					          </div>
 					       
 					      </div>
@@ -186,31 +176,22 @@
 
 <!-- Edit Model -->
 				<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<form method="post" action="{{route('update-community')}}">
-						{{csrf_field()}}
+					<form method="post" action="<?php echo e(route('update-jobtype')); ?>">
+						<?php echo e(csrf_field()); ?>
+
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Edit Community</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">Edit Job Type</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					       	<input type="hidden" id="community-id" name="community_id" >
+					       	<input type="hidden" id="id" name="id" >
 					          <div class="form-group">
-					            <label  class="col-form-label">Religion:</label>
-					            <select class="form-control" name="religion" id="religion" required>
-					            	<option>Select Religion</option>
-					            	@foreach($religion as $data)
-					            	<option value="{{$data->id}}">{{$data->religion}}</option>
-					            	@endforeach
-					            	
-					            </select>
-					          </div>
-					          <div class="form-group">
-					            <label for="message-text" class="col-form-label">Comunity Name</label>
-					            <input class="form-control" name="community" id="community" placeholder="Enter Community Name" required>
+					            <label for="message-text" class="col-form-label">Job Type</label>
+					            <input class="form-control" name="jobtype" id="jobtype" placeholder="Enter Profile Name" required>
 					          </div>
 					       
 					      </div>
@@ -226,14 +207,14 @@
 					<script type="text/javascript">
 
 						function edit(id){
+							console.log(id);
 							$.ajax({
-			                    url:"{{url('admin/community/edit')}}/"+id,
+			                    url:"<?php echo e(url('admin/jobtype/edit')); ?>/"+id,
 			                    type:'GET',
 			                   	success:function(response){
 			                   		console.log(response);
-			                    	$('#community-id').val(response.id);
-			                    	$('#religion').val(response.religion);
-			                    	$('#community').val(response.community)
+			                    	$('#id').val(response.id);
+			                    	$('#jobtype').val(response.jobtype)
 			                   	}
 			                   });
 						}
@@ -243,12 +224,12 @@
 
 								if($(this).prop('checked')) {
 								        $.ajax({
-						                    url:"{{url('admin/community/status')}}/"+id+'/0',
+						                    url:"<?php echo e(url('admin/jobtype/status')); ?>/"+id+'/0',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({
-													  title: 'Community Activated!!',
-													  text: 'Communtiy status changed successfully',
+													  title: 'Jobtype Activated!!',
+													  text: 'Jobtype status changed successfully',
 													  icon: 'success',
 													  confirmButtonText: 'OK'
 													});
@@ -256,12 +237,12 @@
 						                   });
 								    }else {
 								        $.ajax({
-						                    url:"{{url('admin/community/status')}}/"+id+'/1',
+						                    url:"<?php echo e(url('admin/jobtype/status')); ?>/"+id+'/1',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({
-												  title: 'Community Deactivated!!!',
-												  text: 'Communtiy status changed successfully..',
+												  title: 'Jobtype Deactivated!!!',
+												  text: 'Jobtype status changed successfully..',
 												  icon: 'error',
 												  confirmButtonText: 'OK'
 												});
@@ -271,4 +252,6 @@
 								});
 						});
 					</script>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('superadmin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\tamil_thirumanam\resources\views/superadmin/jobtype/index.blade.php ENDPATH**/ ?>

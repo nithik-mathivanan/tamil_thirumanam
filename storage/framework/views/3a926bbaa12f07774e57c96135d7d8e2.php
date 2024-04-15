@@ -5,12 +5,16 @@
 	<title><?php echo $__env->yieldContent('title'); ?></title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<link rel="stylesheet" href="<?php echo e(asset('public/admin_files/css/bootstrap.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('public/admin_files/css/switch.css')); ?>">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="<?php echo e(asset('public/admin_files/css/ready.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('public/admin_files/css/demo.css')); ?>">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- popup model -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- End popup model -->
 
 </head>
 <body>
@@ -211,12 +215,60 @@
 								<p>Occupation</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('profile')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Profile</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('jobtype')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Job Type</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('education')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Highest Education</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('familystatus')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Family Status</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('familytype')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Family Type</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('familyvalue')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Family Value</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('parentalstatus')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Parental Status</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('eatinghabbit')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Eating Habbit</p>
+							</a>
+						</li>
 						
 					</ul>
 				</div>
 			</div>
 			<div class="main-panel">
-				<?php echo $__env->yieldContent('content'); ?>;
+				<?php echo $__env->yieldContent('content'); ?>
 				<!-- <footer class="footer">
 					<div class="container-fluid">
 						<nav class="pull-left">
@@ -283,5 +335,9 @@
 <script src="<?php echo e(asset('public/js/ready.min.js')); ?>"></script>
 <script src="<?php echo e(asset('public/js/demo.js')); ?>"></script>
 <script src="<?php echo e(asset('public/js/custom.js')); ?>"></script>
+<!-- popup model -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- end popup model -->
 </html>
 <?php /**PATH C:\xampp\htdocs\tamil_thirumanam\resources\views/superadmin/layout.blade.php ENDPATH**/ ?>

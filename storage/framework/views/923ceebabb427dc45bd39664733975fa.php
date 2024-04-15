@@ -46,19 +46,19 @@
 													<td> 
 												    <?php if($data->status==0): ?>
 
-												    <a href="<?php echo e(url('superadmin/religion/active')); ?>/<?php echo e($data->id); ?>">
+												    <a href="<?php echo e(url('admin/religion/active')); ?>/<?php echo e($data->id); ?>">
                                                    <button class="btn btn-sm btn-success" type="button" title="Active" value="<?php echo e($data->id); ?>" id="active" name="status"><i class="fa fa-check"></i></button></a>
                                                    <?php else: ?>
-                                                   	<a href="<?php echo e(url('superadmin/religion/in_active')); ?>/<?php echo e($data->id); ?>">
+                                                   	<a href="<?php echo e(url('admin/religion/in_active')); ?>/<?php echo e($data->id); ?>">
 
                                                    		<button class="btn btn-sm btn-danger" type="button" title="InActive" value="<?php echo e($data->id); ?>" class="inactive" name="status"><i class="fa fa-close"></i></button>
                                                    	</a>
                                                    <?php endif; ?>
 
-														<a href="<?php echo e(url('superadmin/religion/edit')); ?>/<?php echo e($data->id); ?>">
+														<a href="<?php echo e(url('admin/religion/edit')); ?>/<?php echo e($data->id); ?>">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
                                                         </a>
-                                                     <a href="<?php echo e(url('superadmin/religion/delete')); ?>/<?php echo e($data->id); ?>">
+                                                     <a href="<?php echo e(url('admin/religion/delete')); ?>/<?php echo e($data->id); ?>">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
                                                         </a>
                                                     </td>

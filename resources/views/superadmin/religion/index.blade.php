@@ -44,19 +44,19 @@
 													<td> 
 												    @if($data->status==0)
 
-												    <a href="{{url('superadmin/religion/active')}}/{{$data->id}}">
+												    <a href="{{url('admin/religion/active')}}/{{$data->id}}">
                                                    <button class="btn btn-sm btn-success" type="button" title="Active" value="{{$data->id}}" id="active" name="status"><i class="fa fa-check"></i></button></a>
                                                    @else
-                                                   	<a href="{{url('superadmin/religion/in_active')}}/{{$data->id}}">
+                                                   	<a href="{{url('admin/religion/in_active')}}/{{$data->id}}">
 
                                                    		<button class="btn btn-sm btn-danger" type="button" title="InActive" value="{{$data->id}}" class="inactive" name="status"><i class="fa fa-close"></i></button>
                                                    	</a>
                                                    @endif
 
-														<a href="{{url('superadmin/religion/edit')}}/{{$data->id}}">
+														<a href="{{url('admin/religion/edit')}}/{{$data->id}}">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
                                                         </a>
-                                                     <a href="{{url('superadmin/religion/delete')}}/{{$data->id}}">
+                                                     <a href="{{url('admin/religion/delete')}}/{{$data->id}}">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
                                                         </a>
                                                     </td>

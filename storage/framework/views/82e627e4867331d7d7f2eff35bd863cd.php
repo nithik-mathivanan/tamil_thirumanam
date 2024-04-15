@@ -1,9 +1,23 @@
 
 <?php $__env->startSection('content'); ?>
 <?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
+<script type="text/javascript">
+	function edit(id){
+							// console.log(id);
+							$.ajax({
+			                    url:"<?php echo e(url('admin/Occupation/edit')); ?>/"+id,
+			                    type:'GET',
+			                   	success:function(response){
+			                   		console.log(response);
+			                    	$('#occupation_id').val(response.id);
+			                    	$('#occupation').val(response.occupation)
+			                   	}
+			                   });
+						}
+</script>
 <div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title">Language</h4>
+						<h4 class="page-title">Occupation</h4>
 						<div class="row table-content">
 							<div class="col-md-8">
 								<div class="flash-section">
@@ -14,7 +28,7 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title">List / Add / Edit / Delete</div>
-										<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModel" data-whatever="@mdo">Create Language</button>
+										<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModel" data-whatever="@mdo">Create Occupation</button>
 									</div>
 									<div class="card-body">
 										
@@ -22,7 +36,7 @@
 											<thead>
 												<tr>
 													<th scope="col">#</th>
-													<th scope="col">Language</th>
+													<th scope="col">Oaccupation</th>
 													<th scope="col">Action</th>
 													<th scope="col">Edit</th>
 													<th scope="col">Delete</th>
@@ -30,10 +44,10 @@
 											</thead>
 											<tbody>
 												<?php $i=1;?>
-												<?php $__currentLoopData = $language; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+												<?php $__currentLoopData = $occupation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 												<tr>
 													<td>1</td>
-													<td><?php echo e($data->language); ?></td>
+													<td><?php echo e($data->occupation); ?></td>
 													
 													<td>
 														<div class="group">
@@ -50,11 +64,12 @@
 														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit(<?php echo e($data->id); ?>)"><i class="fa fa-pencil"></i></button>
 													</td>
 													<td>
-														<a href="<?php echo e(url('admin/language/delete')); ?>/<?php echo e($data->id); ?>">
+														<a href="<?php echo e(url('admin/occupation/delete')); ?>/<?php echo e($data->id); ?>">
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>
+												<?php $i++; ?>
 												<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 											</tbody>
 										</table>
@@ -68,13 +83,13 @@
 				</div>
 <!-- Pop Up Model -->
 				<div class="modal fade" id="addModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<form method="post" action="<?php echo e(route('store-language')); ?>">
+					<form method="post" action="<?php echo e(route('store-occupation')); ?>">
 						<?php echo e(csrf_field()); ?>
 
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Create Language</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">Create Occupation</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
@@ -83,8 +98,8 @@
 					       
 				
 					          <div class="form-group">
-					            <label for="message-text" class="col-form-label">Language</label>
-					            <input class="form-control" name="language" placeholder="Enter Language" required>
+					            <label for="message-text" class="col-form-label">Occupation</label>
+					            <input class="form-control" name="occupation" placeholder="Enter Occupation" required>
 					          </div>
 					       
 					      </div>
@@ -99,22 +114,22 @@
 
 <!-- Edit Model -->
 				<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<form method="post" action="<?php echo e(route('update-language')); ?>">
+					<form method="post" action="<?php echo e(route('update-occupation')); ?>">
 						<?php echo e(csrf_field()); ?>
 
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Edit Family Status</h5>
+					        <h5 class="modal-title" id="exampleModalLabel">Edit Occupation</h5>
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					       	<input type="hidden" id="id" name="id" >
+					       	<input type="hidden" id="occupation_id" name="occupation_id" >
 					          <div class="form-group">
-					            <label for="message-text" class="col-form-label">Family Status</label>
-					            <input class="form-control" name="language" id="language" placeholder="Enter language" required>
+					            <label for="message-text" class="col-form-label">Parental Status</label>
+					            <input class="form-control" name="occupation" id="occupation" placeholder="Enter occupation" required>
 					          </div>
 					       
 					      </div>
@@ -129,29 +144,19 @@
 
 					<script type="text/javascript">
 
-						function edit(id){
-							console.log(id);
-							$.ajax({
-			                    url:"<?php echo e(url('admin/language/edit')); ?>/"+id,
-			                    type:'GET',
-			                   	success:function(response){
-			                   		console.log(response);
-			                    	$('#id').val(response.id);
-			                    	$('#language').val(response.language)
-			                   	}
-			                   });
-						}
+						
 						$(document).ready(function() {
 							  	$('.toggle-switch').click(function() {
 							  	var id = $(this).val();
+
 								if($(this).prop('checked')) {
 								        $.ajax({
-						                    url:"<?php echo e(url('admin/language/status')); ?>/"+id+'/0',
+						                    url:"<?php echo e(url('admin/occupation/status')); ?>/"+id+'/0',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({
-													  title: 'language Activated!!',
-													  text: 'language status changed successfully',
+													  title: 'occupation Activated!!',
+													  text: 'occupation status changed successfully',
 													  icon: 'success',
 													  confirmButtonText: 'OK'
 													});
@@ -159,12 +164,12 @@
 						                   });
 								    }else {
 								        $.ajax({
-						                    url:"<?php echo e(url('admin/language/status')); ?>/"+id+'/1',
+						                    url:"<?php echo e(url('admin/occupation/status')); ?>/"+id+'/1',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({
-												  title: 'Language Deactivated!!!',
-												  text: 'Language status changed successfully..',
+												  title: 'occupation Deactivated!!!',
+												  text: 'occupation changed successfully..',
 												  icon: 'error',
 												  confirmButtonText: 'OK'
 												});
@@ -174,5 +179,5 @@
 								});
 						});
 					</script>
-				<?php $__env->stopSection(); ?>
-<?php echo $__env->make('superadmin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\tamil_thirumanam\resources\views/superadmin/language/index.blade.php ENDPATH**/ ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('superadmin.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\tamil_thirumanam\resources\views/superadmin/occupation/index.blade.php ENDPATH**/ ?>

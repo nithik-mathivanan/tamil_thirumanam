@@ -101,7 +101,9 @@
 													<th scope="col">#</th>
 													<th scope="col">Community</th>
 													<th scope="col">Religion</th>
-													<th scope="col" colspan="2">Action</th>
+													<th scope="col">Action</th>
+													<th scope="col">Edit</th>
+													<th scope="col">Delete</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -124,6 +126,11 @@
 													</td>
 													<td>
 														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit(<?php echo e($data->id); ?>)"><i class="fa fa-pencil"></i></button>
+													</td>
+													<td>
+														<a href="<?php echo e(url('admin/community/delete')); ?>/<?php echo e($data->id); ?>">
+                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+                                                        </a>
 													</td>
 												</tr>
 												<?php $i++; ?>
@@ -222,7 +229,7 @@
 
 						function edit(id){
 							$.ajax({
-			                    url:"<?php echo e(url('superadmin/community/edit')); ?>/"+id,
+			                    url:"<?php echo e(url('admin/community/edit')); ?>/"+id,
 			                    type:'GET',
 			                   	success:function(response){
 			                   		console.log(response);
@@ -238,7 +245,7 @@
 
 								if($(this).prop('checked')) {
 								        $.ajax({
-						                    url:"<?php echo e(url('superadmin/community/status')); ?>/"+id+'/0',
+						                    url:"<?php echo e(url('admin/community/status')); ?>/"+id+'/0',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({
@@ -251,7 +258,7 @@
 						                   });
 								    }else {
 								        $.ajax({
-						                    url:"<?php echo e(url('superadmin/community/status')); ?>/"+id+'/1',
+						                    url:"<?php echo e(url('admin/community/status')); ?>/"+id+'/1',
 						                    type:'GET',
 						                   	success:function(response){
 						                    	Swal.fire({

@@ -44,4 +44,10 @@ class CommunityController extends Controller
         $update->update();
         return redirect()->route('community')->withSuccess( 'Community has been updated successfully' );
     }
+
+    public function delete($id){
+        $delete = Community::where('id',$id)->update(['is_deleted'=>1]);
+      return  redirect()->route('community')->with('message','Community has been deleted successfully');
+
+    }
 }

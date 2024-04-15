@@ -20,4 +20,28 @@ class OccupationController extends Controller
        
         return redirect()->route('occupation')->withSuccess( 'Occupation has been store successfully' );;
  }
+ public function status($id,$code){
+        $occupation = Occupation::where('id',$id)->update(['status'=>$code]);
+        return redirect()->route('occupation')->withSuccess( 'Occupation Status Changed..' );
+    }
+
+    public function edit($id){
+        $occupation = Occupation::find($id);
+
+        return response()->json($occupation);
+    }
+
+    public function update(Request $request){
+       
+        $update = Occupation::find($request->occupation_id);
+        $update->occupation = $request->occupation;
+        $update->update();
+        return redirect()->route('occupation')->withSuccess( 'Occupation has been updated successfully' );
+    }
+
+    public function delete($id){
+        $delete = Occupation::where('id',$id)->update(['is_deleted'=>1]);
+      return  redirect()->route('occupation')->with('message','Occupation has been deleted successfully');
+
+    }
 }
