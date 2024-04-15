@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+
+<head>
+    <title>PurpleSoft</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css">
+</head>
+
+<body>
+    <div class="preloader">
+        <div><a class="brand brand-md" href="index"><img src="images/header-image.png" alt="" /></a>
+            <div class="page-loader-body">
+                <div id="spinningSquaresG">
+                    <div class="spinningSquaresG" id="spinningSquaresG_1"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_2"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_3"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_4"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_5"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_6"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_7"></div>
+                    <div class="spinningSquaresG" id="spinningSquaresG_8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page cloud-services-page">
+        <header class="page-head">
+            <div class="rd-navbar-wrap">
+              <nav class="rd-navbar rd-navbar-default" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+                data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+                data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
+                data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static"
+                data-xxl-device-layout="rd-navbar-static" data-lg-stick-up="true" data-xl-stick-up="true"
+                data-xxl-stick-up="true" data-lg-stick-up-offset="60px" data-xl-stick-up-offset="60px"
+                data-xxl-stick-up-offset="60px">
+                <div class="rd-navbar-inner">
+                  <div class="rd-navbar-panel">
+                    <button class="rd-navbar-toggle" data-custom-toggle=".rd-navbar-nav-wrap"
+                      data-custom-toggle-disable-on-blur="true"><span></span></button><a class="rd-navbar-brand brand"
+                      href="index"><img src="images/header-image.png" alt="" width="139" height="22" /></a>
+                  </div>
+                  <div class="rd-navbar-group rd-navbar-search-wrap">
+                    <div class="rd-navbar-nav-wrap">
+                      <div class="rd-navbar-nav-inner">
+                        <!-- <div class="rd-navbar-search">
+                            <form class="rd-search" action="#" method="GET" data-search-live="rd-search-results-live">
+                              <div class="form-wrap">
+                                <label class="form-label" for="rd-search-form-input">Search...</label>
+                                <input class="form-input" id="rd-search-form-input" type="text" name="s" autocomplete="off">
+                                <div class="rd-search-results-live" id="rd-search-results-live"></div>
+                              </div>
+                              <button class="rd-search-submit" type="submit"></button>
+                            </form>
+                            <button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-search-wrap"></button>
+                          </div> -->
+                        <ul class="rd-navbar-nav">
+                          <li class="rd-nav-item"><a class="rd-nav-link" href="index">Home</a>
+                          </li>
+                          <li class="rd-nav-item"><a class="rd-nav-link" href="about-us">About us</a>
+                          </li>
+                          <li class="rd-nav-item"><a class="rd-nav-link" href="index">WHAT WE DO</a>
+                            <span class="rd-navbar-submenu-toggle d-sm-none"></span>
+                              <ul class="rd-menu rd-navbar-megamenu rd-navbar-open-right custom-sub-menu">
+                                <li class="megamenu-item">
+                                  <!-- <h5 class="rd-megamenu-title">Pages</h5> -->
+                                  <ul class="megamenu-list">
+                                    <li class="rd-megamenu-list-item">
+                                      <a class="rd-megamenu-list-link" href="web-design">
+                                      <img src = "images/menu-image1.png" class="img-fluid" alt="web-developmnt-menu-image"/>
+                                      <p class="sub-menu-title">Web Designing</p>
+                                      <p class="sub-menu-para">As a software solutions company, we offer top-notchUI UX design services and intuitive digital experiences.</p>
+                                      <a class="button button-xl button-primary sub-menu-button" href="web-design" target="_blank">READ MORE</a>
+                                    </a>
+                                  </li>
+                                  </ul>
+                                </li>
+                                <li class="megamenu-item">
+                                  <!-- <h5 class="rd-megamenu-title">Pages</h5> -->
+                                  <ul class="megamenu-list">
+                                    <li class="rd-megamenu-list-item">
+                                      <a class="rd-megamenu-list-link" href="app-development">
+                                      <img src = "images/menu-image2.png" class="img-fluid" alt="web-developmnt-menu-image"/>
+                                      <p class="sub-menu-title">App Development</p>
+                                      <p class="sub-menu-para">Our web development experts create high-quality, scalable, and secure web solutions tailored to your business needs.</p>
+                                      <a class="button button-xl button-primary sub-menu-button" href="app-development" target="_blank">READ MORE</a>
+                                    </a>
+                                  </li>
+                                  </ul>
+                                </li>
+                                <li class="megamenu-item">
+                                  <!-- <h5 class="rd-megamenu-title">Pages</h5> -->
+                                  <ul class="megamenu-list">
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="cloud-services">
+                                      <img src = "images/menu-image3.png" class="img-fluid" alt="web-developmnt-menu-image"/>
+                                      <p class="sub-menu-title">Cloud Services</p>
+                                      <p class="sub-menu-para">Our cloud computing services offer robust, scalable, and secure solutions to integrate your existing IT infrastructure seamlessly.</p>
+                                      <a class="button button-xl button-primary sub-menu-button" href="cloud-services" target="_blank">READ MORE</a>
+                                    </a>
+                                  </li>
+                                  </ul>
+                                </li>
+                                <li class="megamenu-item">
+                                  <!-- <h5 class="rd-megamenu-title">Pages</h5> -->
+                                  <ul class="megamenu-list">
+                                    <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="enterprise-solutions">
+                                      <img src = "images/menu-image4.png" class="img-fluid" alt="web-developmnt-menu-image"/>
+                                      <p class="sub-menu-title">Enterprise Solutions</p>
+                                      <p class="sub-menu-para">Our innovative marketing services empower your brand to reach its maximum potential.</p>
+                                      <a class="button button-xl button-primary sub-menu-button" href="enterprise-solutions" target="_blank">READ MORE</a>
+                                    </a>
+                                  </li>
+                                  </ul>
+                                </li>
+                                <li class="megamenu-item">
+                                  <a class="button button-xl button-primary sub-menu-button no-border" href="data-analytics" target="_blank">Data Analytics</a>
+                                  <a class="button button-xl button-primary sub-menu-button no-border" href="it-consulting" target="_blank">IT Consulting</a>
+                                  <a class="button button-xl button-primary sub-menu-button no-border" href="ecommerce" target="_blank">eCommerce</a>
+                                  <a class="button button-xl button-primary sub-menu-button no-border" href="infrastructure" target="_blank">Infrastructure</a>
+                                </li>
+                              </ul>
+                          </li>
+                          <li class="rd-nav-item active"><a class="rd-nav-link" href="projects">PROJECTS</a>
+                          </li>
+                          <li class="rd-nav-item"><a class="rd-nav-link" href="clients">CLIENTS</a>
+                          </li>
+                          <li class="rd-nav-item"><a class="rd-nav-link" href=career>CAREER</a>
+                          </li>
+                          <li class="rd-nav-item"><a class="rd-nav-link" href="contact">CONTACT</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- <div class="rd-navbar-shop"><a class="novi-icon link-shop material-icons-shopping_cart" href="#"></a></div> -->
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </header>
+        <section class="section section-1 section-50 section-lg-90 section-md-bottom-145">
+            <div class="container">
+                <div class="row row-40">
+                    <div class="col-lg-7 col-12">
+                        <div class="position-relative sa-home-trusted-outer">
+                            <div class="sa-home-trusted-heading  mt-5 mt-lg-0">
+                                <h2 class=" text-black inner-heading  trusted-line-text-main why-text text-capitalize">Under Development
+                                </h2>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section section-50 web-development-page section-lg-90 section-md-bottom-145"
+            id="section-start-journey2">
+            <div class="container">
+                <div class="row row-40">
+                    <div class="col-sm-12 col-md-12 col-lg-8">
+                        <div class="position-relative sa-home-trusted-outer">
+                            <div class="sa-home-trusted-heading  mt-5 mt-lg-0">
+							<a href="purple-soft/TamilThirumanamMar04/public/index.php" target="_blank">
+							<img src="images/lotus-icon.png" 
+								style="filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(221deg) brightness(67%) contrast(80%);float:left;" 
+								alt="aesthetics" width="200" height="160" class="wow fadeInRight" data-wow-duration=".9s" data-wow-delay=".6s" />
+                                <h2 style="float:left; margin-top: 39px; margin-left: 20px;" class=" text-black inner-heading  trusted-line-text-main why-text text-capitalize wow fadeInLeft" data-wow-duration=".9s" data-wow-delay=".6s">Aesthetics
+                                </h2>
+							</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section py-5 bg-cod-gray novi-background">
+            <div class="container text-center text-md-start">
+                <div class="row row-30 align-items-md-center justify-content-lg-center justify-content-xl-start">
+                    <div class="col-6 wow fadeInLeft" data-wow-duration=".9s" data-wow-delay=".8s"><a class="brand"
+                            href="index"><img src="images/footer-image.png" alt="" width="139" height="22" /></a>
+                    </div>
+                    <!-- <div class="col-md-7 col-lg-6 col-xl-5">
+              <div class="wrap-justify">
+                <address class="contact-info text-start">
+                  <div class="unit unit-horizontal unit-spacing-xs align-items-center justify-content-center unit-sm-left wow fadeInLeft" data-wow-duration=".9s" data-wow-delay=".6s">
+                    <div class="unit-left"><span class="novi-icon icon icon-md-custom icon-gunsmoke material-icons-place"></span></div>
+                    <div class="unit-body font-purple fw-light"><a class="link-light-03 d-inline" href="#"><b>Kim Chun Hei - Manager</b>,<br/>
+                      123 Anywhere St., Any City</a></div>
+                  </div>
+                </address>
+                <address class="contact-info text-start">
+                  <div class="unit unit-horizontal unit-spacing-xs align-items-center justify-content-center unit-sm-left wow fadeInLeft" data-wow-duration=".9s" data-wow-delay=".4s">
+                    <div class="unit-left"><span class="novi-icon icon icon-md-custom icon-gunsmoke material-icons-phone"></span></div>
+                    <div class="unit-body font-purple fw-light">
+                      <div class="link-wrap"><a class="link-light-03" href="tel:#">+123-456-7890</a></div>
+                      <div class="link-wrap"><a class="link-light-03" href="mailto:hello@reallygreatsite.com">hello@reallygreatsite.com</a></div>
+                    </div>
+                  </div>
+                </address>
+              </div>
+            </div> -->
+                    <div class="col-6 wow fadeInLeft d-flex align-items-center" data-wow-duration=".9s"
+                        data-wow-delay=".2s">
+                        <ul class="list-inline list-inline-xs">
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-facebook" href="#"></a></li>
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-twitter" href="#"></a></li>
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-google-plus" href="#"></a></li>
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-linkedin" href="#"></a></li>
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-skype" href="#"></a></li>
+                            <li><a class="novi-icon icon icon-sm-custom link-tundora fa-youtube" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="page-foot page-foot-default section-35 bg-black novi-background text-center">
+            <section>
+        <div class="cr">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright © <span> 2024,All Rights Reserved.Powered by</span> <a href="http://purplesofts.com" class="purple-text">PURPLESOFTS Singapore</a></p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        </footer>
+    </div>
+    <a class="whatsapp-container" href="https://api.whatsapp.com/send/?phone=6591695870" target="_blank">
+    <img src="images/whatsapp-icon-purple.png">
+  </a>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+        integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
