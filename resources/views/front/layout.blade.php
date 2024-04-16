@@ -75,10 +75,10 @@
                 </div>
                 <div class="user-bio">
                     
-                    <h5>Vaanathi</h5>
-                    <span>Senior personal advisor</span>
+                   
+                   <a href="{{url('user')}}"><h3>LOGIN</h3></a>
                     
-                    <a href="https://tamilthirumanam.com/contact"  class="btn btn-primary btn-sm">Ask your doubts</a>
+                 
                 </div>
             </div>
             <div class="menu-pop-soci">
@@ -222,17 +222,8 @@
                     <!-- USER PROFILE -->
                     <div class="al">
                         <div class="head-pro">
-                            <img src="{{asset('users_assets/images/profiles/1.jpg')}}" alt="" loading="lazy">
-                            @if(session()->has('USERS_ID')!=null)
-                            @foreach($userdetail as $list)
-                            <b>{{$list->name}}</b><br>
-                            <a href="{{url('user/dashboard')}}"><h4>{{$list->rand_id}}</h4></a>
-                            @endforeach
-                            @else
-                            <b>Vaana/Advisor</b>
-                            
-                            @endif
-                            <span class="fclick"></span>
+                            <!-- <img src="" alt="" loading="lazy"> -->
+                              <a href="{{url('user')}}" class="text-decoration-none"><h6>LOGIN</h6></a>
                         </div>
                     </div>
 

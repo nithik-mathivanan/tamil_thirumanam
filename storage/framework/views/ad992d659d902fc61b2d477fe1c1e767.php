@@ -75,10 +75,10 @@
                 </div>
                 <div class="user-bio">
                     
-                    <h5>Vaanathi</h5>
-                    <span>Senior personal advisor</span>
+                   
+                   <a href="<?php echo e(url('user')); ?>"><h3>LOGIN</h3></a>
                     
-                    <a href="https://tamilthirumanam.com/contact"  class="btn btn-primary btn-sm">Ask your doubts</a>
+                 
                 </div>
             </div>
             <div class="menu-pop-soci">
@@ -222,17 +222,8 @@
                     <!-- USER PROFILE -->
                     <div class="al">
                         <div class="head-pro">
-                            <img src="<?php echo e(asset('users_assets/images/profiles/1.jpg')); ?>" alt="" loading="lazy">
-                            <?php if(session()->has('USERS_ID')!=null): ?>
-                            <?php $__currentLoopData = $userdetail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <b><?php echo e($list->name); ?></b><br>
-                            <a href="<?php echo e(url('user/dashboard')); ?>"><h4><?php echo e($list->rand_id); ?></h4></a>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php else: ?>
-                            <b>Vaana/Advisor</b>
-                            
-                            <?php endif; ?>
-                            <span class="fclick"></span>
+                            <!-- <img src="" alt="" loading="lazy"> -->
+                              <a href="<?php echo e(url('user')); ?>" class="text-decoration-none"><h6>LOGIN</h6></a>
                         </div>
                     </div>
 

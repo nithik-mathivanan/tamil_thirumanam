@@ -73,14 +73,9 @@
                 <li><a href="#!"><i class="fa fa-map-marker" aria-hidden="true"></i>3812 Lena Lane City Jackson Mississippi</a></li>
             </ul>
             <div class="menu-pop-help">
-                <h4>Support Team</h4>
-                <div class="user-pro">
-                    <img src="{{asset('users_assets/images/profiles/1.jpg')}}" alt="" loading="lazy">
-                </div>
                 <div class="user-bio">
-                    
-                    <h5>Vaanathi</h5>
-                    <span>Senior personal advisor</span>
+                  
+                    <span>LOGIN</span>
                     
                     <a href="enquiry.html" class="btn btn-primary btn-sm">Ask your doubts</a>
                 </div>
@@ -202,22 +197,7 @@
                     </div>
 
                     <!-- USER PROFILE -->
-                    <div class="al">
-                        <div class="head-pro">
-                            <img src="{{asset('users_assets/images/profiles/1.jpg')}}" alt="" loading="lazy">
-                            @if(session()->has('USERS_ID')!=null)
-                            @isset($userdetails)
-                            @foreach($userdetail as $list)
-                            <b>{{$list->name}}</b><br>
-                            <a href="{{url('user/dashboard')}}"><h4>{{$list->rand_id}}</h4></a>
-                            @endforeach
-                            @endisset
-                            @else
-                            <b>Login/Signup</b>
-                            @endif
-                            <span class="fclick"></span>
-                        </div>
-                    </div>
+                    
 
                     <!--MOBILE MENU-->
                     <div class="mob-menu">

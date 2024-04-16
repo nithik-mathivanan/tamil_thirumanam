@@ -42,22 +42,33 @@
                                             <label class="lb">Profile Created by:</label>
                                             <select class="form-select chosen-select" data-placeholder="Select Your Profile" name="mprofile_by" id="mprofile_by"required> 
                                             <option value="">Select</option>
-                                            <option value="MySelf">MySelf</option>
-                                            <option value="Parent">Parent</option>
-                                            <option value="Friend">Friend</option>
-                                            <option value="Brother">Brother</option>
-                                            <option value="Sister">Sister</option>
+                                            <?php $__currentLoopData = $profile; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $profile): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($profile->id); ?>"><?php echo e($profile->created_by); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                           </select>
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Email:</label>
+                                           
                                             <input type="email" class="form-control" id="email"
-                                                placeholder="Enter email" name="email">
+                                                placeholder="Enter email" name="email" value="<?php echo e(old('email')); ?>">
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Phone:</label>
-                                            <input type="text" class="form-control" id="phone"
-                                                placeholder="Enter phone number" name="phone" maxlength="10">
+                                            <div class="row">
+                                                <div class=" col-md-3">
+                                                    <select class="form-control" name="country_code" required>
+                                                        <option value="">Code</option>
+                                                        <?php $__currentLoopData = $country_code; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                         <option value="<?php echo e($data->phonecode); ?>"><?php echo e($data->iso3); ?> (<?php echo e($data->phonecode); ?>)</option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                                <div class=" col-md-9">
+                                                    <input type="text" class="form-control col-md-9" id="phone"
+                                                    placeholder="Enter phone number" name="phone" maxlength="10">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Password:</label>

@@ -73,14 +73,9 @@
                 <li><a href="#!"><i class="fa fa-map-marker" aria-hidden="true"></i>3812 Lena Lane City Jackson Mississippi</a></li>
             </ul>
             <div class="menu-pop-help">
-                <h4>Support Team</h4>
-                <div class="user-pro">
-                    <img src="<?php echo e(asset('users_assets/images/profiles/1.jpg')); ?>" alt="" loading="lazy">
-                </div>
                 <div class="user-bio">
-                    
-                    <h5>Vaanathi</h5>
-                    <span>Senior personal advisor</span>
+                  
+                    <span>LOGIN</span>
                     
                     <a href="enquiry.html" class="btn btn-primary btn-sm">Ask your doubts</a>
                 </div>
@@ -202,22 +197,7 @@
                     </div>
 
                     <!-- USER PROFILE -->
-                    <div class="al">
-                        <div class="head-pro">
-                            <img src="<?php echo e(asset('users_assets/images/profiles/1.jpg')); ?>" alt="" loading="lazy">
-                            <?php if(session()->has('USERS_ID')!=null): ?>
-                            <?php if(isset($userdetails)): ?>
-                            <?php $__currentLoopData = $userdetail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <b><?php echo e($list->name); ?></b><br>
-                            <a href="<?php echo e(url('user/dashboard')); ?>"><h4><?php echo e($list->rand_id); ?></h4></a>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endif; ?>
-                            <?php else: ?>
-                            <b>Login/Signup</b>
-                            <?php endif; ?>
-                            <span class="fclick"></span>
-                        </div>
-                    </div>
+                    
 
                     <!--MOBILE MENU-->
                     <div class="mob-menu">

@@ -263,6 +263,24 @@
 								<p>Eating Habbit</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('countries')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Countries</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('states')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>State</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo e(route('cities')); ?>">
+								<i class="la la-keyboard-o"></i>
+								<p>Cities</p>
+							</a>
+						</li>
 						
 					</ul>
 				</div>

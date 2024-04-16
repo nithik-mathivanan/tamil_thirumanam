@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
 <style type="text/css">

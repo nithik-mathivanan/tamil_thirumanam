@@ -42,22 +42,33 @@
                                             <label class="lb">Profile Created by:</label>
                                             <select class="form-select chosen-select" data-placeholder="Select Your Profile" name="mprofile_by" id="mprofile_by"required> 
                                             <option value="">Select</option>
-                                            <option value="MySelf">MySelf</option>
-                                            <option value="Parent">Parent</option>
-                                            <option value="Friend">Friend</option>
-                                            <option value="Brother">Brother</option>
-                                            <option value="Sister">Sister</option>
+                                            @foreach($profile as $profile)
+                                                <option value="{{$profile->id}}">{{$profile->created_by}}</option>
+                                            @endforeach
                                           </select>
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Email:</label>
+                                           
                                             <input type="email" class="form-control" id="email"
-                                                placeholder="Enter email" name="email">
+                                                placeholder="Enter email" name="email" value="{{old('email')}}">
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Phone:</label>
-                                            <input type="text" class="form-control" id="phone"
-                                                placeholder="Enter phone number" name="phone" maxlength="10">
+                                            <div class="row">
+                                                <div class=" col-md-3">
+                                                    <select class="form-control" name="country_code" required>
+                                                        <option value="">Code</option>
+                                                        @foreach($country_code as $data)
+                                                         <option value="{{$data->phonecode}}">{{$data->iso3}} ({{$data->phonecode}})</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class=" col-md-9">
+                                                    <input type="text" class="form-control col-md-9" id="phone"
+                                                    placeholder="Enter phone number" name="phone" maxlength="10">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Password:</label>

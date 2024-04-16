@@ -197,23 +197,10 @@
                                                     <label for="religion" class="form-label">Religion</label>
                                                     <select type="text" class="form-control" name="religion" id="religion"
                                                         required>
-                                                        @if($list->religion!=null)
-                                                        <option value="{{$list->religion}}">{{$list->religion}}</option>
-                                                        @else
-                                                        <option value="">Select</option>
-                                                        @endif
-                                                        <option value="Hindu">Hindu</option>
-                                                        <option value="Muslim_Shia">Muslim - Shia</option>
-                                                        <option value="Muslim_Sunni">Muslim - Sunni</option>
-                                                        <option value="Muslim_Others">Muslim - Others</option>
-                                                        <option value="Christian">Christian</option>
-                                                        <option value="Sikh">Sikh</option>
-                                                        <option value="Jain_Digambar">Jain - Digambar</option>
-                                                        <option value="Jain_Shwetambar">Jain - Shwetambar</option>
-                                                        <option value="Jain_Others">Jain - Others</option>
-                                                        <option value="Parsi">Parsi</option>
-                                                        <option value="Buddhist">Buddhist</option>
-                                                        <option value="Inter_Religion">Inter-Religion</option>
+                                                    <option value="">Select Religion</option>
+                                                      @foreach($religion as $data)
+                                                        <option value="{{$data->id}}">{{$data->religion}}</option>
+                                                       @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -1085,7 +1072,7 @@
                                             </div>
                                         <div class="row">
                                             <div class="col-md-6 form-group">
-                                                <label for="raasi" class="lb">Raasi</label>
+                                                <label for="raasi" class="lb">Star</label>
                                                 <select type="text" class="form-control" name="raasi"
                                                 id="raasi" required>
                                                 @if($list->rasi!=null)
@@ -1126,7 +1113,7 @@
                                                 
                                             </div>
                                             <div class="col-md-6 form-group">
-                                                <label for="star" class="lb">Star</label>
+                                                <label for="star" class="lb">Raasi</label>
                                                 <select type="text" class="form-control" name="star"
                                                 id="star" required>
                                                 @if($list->star!=null)
@@ -1151,26 +1138,25 @@
                                             </div>
                                         </div>
                                             <div class="row">
-                                            <div class="col-md-3 form-group">
-                                                <label for="birthDate" class="lb">Birth Date</label>
-                                                <input type="date" class="form-control" id="birthDate">
+                                                <div class="col-md-6 form-group">
+                                                    <label for="birthDate" class="lb">Birth Date</label>
+                                                    <input type="date" class="form-control" id="birthDate">
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label for="birthTime" class="lb">Birth Time</label>
+                                                    <input type="time" class="form-control" id="birthTime">
+                                                </div>
                                             </div>
-                                            <div class="col-md-3 form-group">
-                                                <label for="birthTime" class="lb">Birth Time</label>
-                                                <input type="time" class="form-control" id="birthTime">
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <label for="zodiacSign" class="lb">Rasi</label>
+                                                    <input type="text" class="form-control" id="zodiacSign" readonly>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                   <label for="nakshatra" class="lb">Star</label>
+                                                   <input type="text" class="form-control" id="nakshatra" readonly>
+                                               </div>
                                             </div>
-                                            <div class="col-md-3 form-group">
-                                                <label for="zodiacSign" class="lb">Rasi</label>
-                                                <input type="text" class="form-control" id="zodiacSign" readonly>
-
-                                                
-                                            </div>
-                                            <div class="col-md-3 form-group">
-                                               <label for="nakshatra" class="lb">Star</label>
-                                               <input type="text" class="form-control" id="nakshatra" readonly>
-
-                                            </div>
-                                        </div>
                                     </div>
                                         <!--END BASIC PROFILE INFO-->
                                         <!--PROFILE JOB/FAMILY INFO-->
@@ -1182,15 +1168,10 @@
                                             <div class="form-group">
                                                 <label class="lb">Job type:</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Profession" name="jobtype">
-                                                    @if($list->job_type!=null)
-                                                    <option value="{{$list->job_type}}">{{$list->job_type}}</option>
-                                                    @else
-                                                    <option value="">Select</option>
-                                                    @endif
-                                                    <option value="Business">Business</option>
-                                                    <option value="Employee">Employee</option>
-                                                    <option value="Government">Government</option>
-                                                    <option value="jobless">Jobless</option>
+                                                    <option value="">Select Job Type</option>
+                                                  @foreach($jobtype as $data)
+                                                    <option value="{{$data->jobtype}}">{{$data->jobtype}}</option>
+                                                    @endforeach
                                                   </select>
                                             </div>
                                             <div class="form-group">
@@ -1225,100 +1206,10 @@
                                                 <label for="education" class="form-label">Highest Education</label>
                                             <select type="text" class="form-control" name="education" id="education"
                                                 required>
-                                                    @if($list->education!=null)
-                                                    <option value="{{$list->education}}">{{$list->education}}</option>
-                                                    @else
-                                                    <option value="">Select</option>
-                                                    @endif
-                                                    <option value="Aeronautical">Aeronautical Engineering</option>
-                                                    <option value="B.Arch">B.Arch</option>
-                                                    <option value="BCA">BCA</option>
-                                                    <option value="BE">BE</option>
-                                                    <option value="B.Plan">B.Plan</option>
-                                                    <option value="B.Sc IT/ Computer Science">B.Sc IT/ Computer Science</option>
-                                                    <option value="B.Tech.">B.Tech.</option>
-                                                    <option value="M.Arch.">M.Arch.</option>
-                                                    <option value="MCA">MCA</option>
-                                                    <option value="ME">ME</option>
-                                                    <option value="M.Sc. IT / Computer Science">M.Sc. IT / Computer Science</option>
-                                                    <option value="M.S.(Engg.)">M.S.(Engg.)</option>
-                                                    <option value="M.Tech.">M.Tech.</option>
-                                                    <option value="PGDCA">PGDCA</option>
-                                                    <option value="B.A.">B.A.</option>
-                                                    <option value="B.Com.">B.Com.</option>
-                                                    <option value="B.Ed.">B.Ed.</option>
-                                                    <option value="BFA">BFA</option>
-                                                    <option value="BFT">BFT</option>
-                                                    <option value="BLIS">BLIS</option>
-                                                    <option value="B.M.M.">B.M.M.</option>
-                                                    <option value="B.Sc.">B.Sc.</option>
-                                                    <option value="B.S.W">B.S.W</option>
-                                                    <option value="B.Phil.">B.Phil.</option>
-                                                    <option value="M.A.">M.A.</option>
-                                                    <option value="MCom">MCom</option>
-                                                    <option value="M.Ed.">M.Ed.</option>
-                                                    <option value="MFA">MFA</option>
-                                                    <option value="MLIS">MLIS</option>
-                                                    <option value="M.Sc.">M.Sc.</option>
-                                                    <option value="MSW">MSW</option>
-                                                    <option value="M.Phil.">M.Phil.</option>
-                                                    <option value="BBA">BBA</option>
-                                                    <option value="BFM (Financial Management)">BFM (Financial Management)</option>
-                                                    <option value="BHM (Hotel Management)">BHM (Hotel Management)</option>
-                                                    <option value="Other Bachelor Degree in Management">Other Bachelor Degree in Management</option>
-                                                    <option value="BHA / BHM (Hospital Administration)">BHA / BHM (Hospital Administration)</option>
-                                                    <option value="MBA">MBA</option>
-                                                    <option value="MFM (Financial Management)">MFM (Financial Management)</option>
-                                                    <option value="MHM (Hotel Management)">MHM (Hotel Management)</option>
-                                                    <option value="MHRM (Human Resource Management)">MHRM (Human Resource Management)</option>
-                                                    <option value="PGDM">PGDM</option>
-                                                    <option value="Other Master Degree in Management">Other Master Degree in Management</option>
-                                                    <option value="MHA / MHM">MHA / MHM (Hospital Administration)</option>
-                                                    <option value="B.A.M.S">B.A.M.S.</option>
-                                                    <option value="BDS">BDS</option>
-                                                    <option value="BHMS">BHMS</option>
-                                                    <option value="BSMS">BSMS</option>
-                                                    <option value="BUMS">BUMS</option>
-                                                    <option value="BVSc">BVSc</option>
-                                                    <option value="MBBS">MBBS</option>
-                                                    <option value="MDS">MDS</option>
-                                                    <option value="MD / MS (Medical)">MD / MS (Medical)</option>
-                                                    <option value="MVSc">MVSc</option>
-                                                    <option value="MCh">MCh</option>
-                                                    <option value="DNB">DNB</option>
-                                                    <option value="BPharm">BPharm</option>
-                                                    <option value="BPT">BPT</option>
-                                                    <option value="B.Sc. Nursing">B.Sc. Nursing</option>
-                                                    <option value="Other Bachelor Degree in Medicine">Other Bachelor Degree in Medicine</option>
-                                                    <option value="M.Pharm">M.Pharm</option>
-                                                    <option value="MPT">MPT</option>
-                                                    <option value="Other Master Degree in Medicine">Other Master Degree in Medicine</option>
-                                                    <option value="BGL">BGL</option>
-                                                    <option value="B.L.">B.L.</option>
-                                                    <option value="LL.B.">LL.B.</option>
-                                                    <option value="Other Bachelor Degree in Legal">Other Bachelor Degree in Legal</option>
-                                                    <option value="LL.M.">LL.M.</option>
-                                                    <option value="M.L.">M.L.</option>
-                                                    <option value="Other Master Degree in Legal">Other Master Degree in Legal</option>
-                                                    <option value="CA">CA</option>
-                                                    <option value="CFA (Chartered Financial Analyst)">CFA (Chartered Financial Analyst)</option>
-                                                    <option value="CS">CS</option>
-                                                    <option value="ICWA">ICWA</option>
-                                                    <option value="Other Degree in Finance">Other Degree in Finance</option>
-                                                    <option value="IAS">IAS</option>
-                                                    <option value="IES">IES</option>
-                                                    <option value="IFS">IFS</option>
-                                                    <option value="IRS">IRS</option>
-                                                    <option value="IPS">IPS</option>
-                                                    <option value="Other Degree in Service">Other Degree in Service</option>
-                                                    <option value="Ph.D.">Ph.D.</option>
-                                                    <option value="Postdoctoral fellow">Postdoctoral fellow</option>
-                                                    <option value="Fellow of National Board (FNB)">Fellow of National Board (FNB)</option>
-                                                    <option value="Diploma">Diploma</option>
-                                                    <option value="Polytechnic">Polytechnic</option>
-                                                    <option value="Trade School">Trade School</option>
-                                                    <option value="Others in Diploma4">Others in Diploma</option>
-                                                    <option value="Higher Secondary School / High School">Higher Secondary School / High School</option>
+                                                    <option value="">Select Education</option>
+                                                    @foreach($education as $data)
+                                                    <option value="{{$data->education}}">{{$data->education}}</option>
+                                                    @endforeach
                                             </select>
                                             </div>
                                             
@@ -1333,27 +1224,20 @@
                                                 <div class="col-md-6 form-group">
                                                    <label class="lb">Family Status</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Family Status" name="family_status">
-                                                    @if($list->family_status!=null)
-                                                    <option value="{{$list->family_status}}">{{$list->family_status}}</option>
-                                                    @else
                                                     <option value="">Select</option>
-                                                    @endif
-                                                    <option value="Middle Class">Middle Class</option>
-                                                    <option value="Upper Middle Class">Upper Middle Class</option>
-                                                    <option value="High Class">High Class</option>
-                                                    <option value="Rich">Rich/Affluent</option>
+                                                    @foreach($familystatus as $data)
+                                                    <option value="{{$data->familystatus}}">{{$data->familystatus}}</option>
+                                                    @endforeach
                                                   </select>
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <label class="lb">Family Type</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Family Type" name="family_type">
-                                                    @if($list->family_type!=null)
-                                                    <option value="{{$list->family_type}}">{{$list->family_type}}</option>
-                                                    @else
+                                                    
                                                     <option value="">Select</option>
-                                                    @endif
-                                                    <option value="joint">Joint</option>
-                                                    <option value="nuclear">Nuclear</option>
+                                                    @foreach($familytype as $data)
+                                                    <option value="{{$data->familytype}}">{{$data->familytype}}</option>
+                                                    @endforeach
                                                     
                                                   </select>
                                                 </div>
@@ -1362,16 +1246,11 @@
                                                 <div class="col-md-6 form-group">
                                                  <label class="lb">Family Values</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Family Values" name="family_value">
-                                                    @if($list->family_values!=null)
-                                                    <option value="{{$list->family_values}}">{{$list->family_values}}</option>
-                                                    @else
-                                                    <option value="">Select</option>
-                                                    @endif
-                                                    <option value="orthodox">Orthodox</option>
-                                                    <option value="traditional">Traditional</option>
-                                                    <option value="moderate">Moderate</option>
-                                                    <option value="liberal">Liberal</option>
                                                     
+                                                    <option value="">Select</option>
+                                                     @foreach($familyvalue as $data)
+                                                    <option value="{{$data->familyvalue}}">{{$data->familyvalue}}</option>
+                                                    @endforeach
                                                   </select>
                                                   </div>
                                                   <div class="col-md-6 form-group">
@@ -1402,30 +1281,22 @@
                                                 <div class="col-md-6 form-group">
                                                     <label class="lb">Father's Status</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Hobbies" name="father_status">
-                                                @if($list->f_status!=null)
-                                                <option value="{{$list->f_status}}">{{$list->f_status}}</option>
-                                                @else
+                                            
                                                 <option value="">Select</option>
-                                                @endif
-                                                <option value="Working">Working</option>
-                                                <option value="Business">Business</option>
-                                                <option value="Retired">Retired</option>
-                                                <option value="In Heaven">In Heaven</option>
+                                                @foreach($parentalstatus as $data)
+                                                    <option value="{{$data->parentalstatus}}">{{$data->parentalstatus}}</option>
+                                                    @endforeach
                                                     
                                                   </select>
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <label class="lb">Mother's Status:</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select your Hobbies" name="mother_status">
-                                                @if($list->m_status!=null)
-                                                <option value="{{$list->m_status}}">{{$list->m_status}}</option>
-                                                @else
+                                               
                                                 <option value="">Select</option>
-                                                @endif
-                                                <option value="Working">Working</option>
-                                                <option value="homeworker">Home Maker</option>
-                                                <option value="retried">Retired</option>
-                                                <option value="inheaven">In Heaven</option>
+                                                @foreach($parentalstatus as $data)
+                                                    <option value="{{$data->parentalstatus}}">{{$data->parentalstatus}}</option>
+                                                    @endforeach
                                                     
                                                   </select>
                                                 </div>
@@ -1605,14 +1476,11 @@
                                                 <div class="col-md-6 form-group">
                                                     <label class="lb">Eating Habit</label>
                                                 <select class="form-select chosen-select" data-placeholder="Select" name="eating">
-                                                @if($list->eatinghabit!=null)
-                                                <option value="{{$list->eatinghabit}}">{{$list->eatinghabit}}</option>
-                                                @else
+                                                
                                                 <option value="">Select</option>
-                                                @endif
-                                                 <option value="Vegetarian">Vegetarian</option>
-                                                <option value="Non Vegetarian">Non Vegetarian</option>
-                                                <option value="Eggetarian">Eggetarian</option>
+                                                 @foreach($eatinghabbit as $data)
+                                                 <option value="{{$data->eatinghabbit}}">{{$data->eatinghabbit}}</option>
+                                                @endforeach
                                                  </select>
                                                 </div>
                                                 <div class="col-md-6 form-group">

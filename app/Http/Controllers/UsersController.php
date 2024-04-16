@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use Hash;
 use App\Http\Controllers\Controller;
 use App\Models\Users\Users;
+use App\Models\Profile;
+use App\Models\Countries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +29,10 @@ class UsersController extends Controller
 
    public function signup()
    {
-        return view('users.signup');
+    $profile = Profile::where('is_deleted',0)->where('status',0)->get();
+    $country_code = Countries::get();
+   
+    return view('users.signup')->with(['profile'=>$profile,'country_code'=>$country_code]);
    }
 
    public function signup_process(Request $request)
@@ -36,6 +42,7 @@ class UsersController extends Controller
         "email"=>'required|unique:users,email',
         "password"=>'required',
         "phone"=>'required|numeric|digits:10',
+        "country_code"=>'required',
     ]);
      
      if(!$valid->passes()){
@@ -60,11 +67,12 @@ class UsersController extends Controller
      $arr=[
             "name"=>$request->name,
             "email"=>$request->email,
-            "password"=>$request->password,
+            "password"=>Hash::make($request->password),
             "mprofile_for"=>$request->mprofile_by,
             "phone"=>$request->phone,
+            "country_code"=>$request->country_code,
             "status"=>1,
-            "is_verify"=>0,
+            "is_verify"=>1,
             "rand_id"=>$rand_id,
             "created_at"=>date('Y-m-d h:i:s'),
             "updated_at"=>date('Y-m-d h:i:s')
@@ -74,38 +82,22 @@ class UsersController extends Controller
         
         $query=DB::table('users')->insert($arr);
         
-     $request->session()->flash('message','Your Signup was Verified. You Can Login Now');
-     return redirect('user/profile_details/'.$rand_id);
+    
+     return redirect()->route('user-login');
     }
      
      
    }
-   public function auth(Request $request)
-    {
-      $email=$request->post('email');
-      $password=$request->post('password');
-
-      $result=Users::where(['email'=>$email,'password'=>$password])->get();
-      
-      if(isset($result['0']->id))
-      {
-        
-        $request->session()->put('USERS_LOGIN',true);
-        $request->session()->put('USERS_ID',$result['0']->id);
-        return redirect('user/dashboard');
-        }
-        else
-        {
-          $request->session()->flash('error','Please enter the valid details');
-        return redirect('user');
-
-        }
-      
-      
-    }
+   
 
     public function dashboard(Request $request)
     {
+       
+    
+        if(Auth::user()->status==1){
+            
+            return redirect('user/profile_details/'.Auth::user()->rand_id);
+        }
         $result['userdetail']=DB::table('users')
         ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
         ->leftJoin('match_details','match_details.mcustomer_id','=','profiles.customer_id')
@@ -126,19 +118,6 @@ class UsersController extends Controller
         ->where(['users.status'=>1])
         ->get();
 
-        if($request->session()->get('USERS_ID')!=null)
-        {
-            DB::table('users')->where(['id'=>$request->session()->get('USERS_ID')])->update(['is_verify'=>1]);
-
-        }
-        else
-        {
-            return redirect('user/verification/'.$result['profile'][0]->rand_id);
-        }
-        
-        // echo "<pre>";
-        // print_r($result);
-        // die();
         return view('users.dashboard',$result);
     }
     public function profile_view(Request $request)
@@ -170,54 +149,6 @@ class UsersController extends Controller
         return view('users.verification', $result);
     }
 
-    // public function verification_process(Request $request)
-    // {
-    //     $request->validate([
-    //         'phone' => 'required|exists:users,phone'
-    //     ]);
-
-    //     $query=DB::table('users')->where(['id'=>$request->session()->get('USERS_ID')])->get();
-            
-    //         $apiKey = urlencode('NTc1NzMxNzI0ZTc1N2E3NzY1MzM2NzRhNmY0ZTY3NjY=');
-    //         // Message details
-    //         $name = $query['0']->name;
-    //         $numbers = "91".$request->phone;
-    //         $sender = urlencode('600010');
-    //         $otp = rand(100000,999999);
-    //         $message = rawurlencode();
-             
-    //         $numbers = $numbers;
-    //         setcookie('otp',$otp);
-    //         // Prepare data for POST request
-    //         $data = array('apikey' => $apiKey, 'numbers' => $numbers, 'sender' => $sender, "message" => $message);
-    //         // Send the POST request with cURL
-    //         $ch = curl_init('https://api.textlocal.in/send/');
-    //         curl_setopt($ch, CURLOPT_POST, true);
-    //         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    //         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //         $response = curl_exec($ch);
-    //         curl_close($ch);
-
-    //         dd($response);
-    //         // Process your response here
-       
-
-    //     if(isset($_POST['ver']))
-    //     {
-    //         $verotp=$_POST['otp'];
-    //         if($verotp==$_COOKIE['otp']){
-    //             return redirect('user/verification/'.$query['0']->rand_id);
-    //             $request->session()->flash('success','Verified Sucessfully');
-                
-    //         }
-    //         else
-    //         {
-    //             return redirect('user/verification/'.$query['0']->rand_id);
-    //             $request->session()->flash('error','otp wrong');
-    //         }
-    //     }
-
-    // }
 
 
     public function plan_details(Request $request, $id)
