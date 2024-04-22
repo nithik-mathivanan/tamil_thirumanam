@@ -32,7 +32,8 @@ class FamilytypeController extends Controller
     }
 
     public function update(Request $request){
-        $update = Familytype::find($request->id);
+        $update = Familytype::find($request->familytype_id);
+
         $update->familytype = $request->familytype;
         $update->update();
         return redirect()->route('familytype')->withSuccess( 'Familytype has been updated successfully' );

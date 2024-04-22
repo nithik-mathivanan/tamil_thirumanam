@@ -1,83 +1,7 @@
 @extends('superadmin.layout')
 @section('content')
 @section('title','Tamil Thirumanam | Dashboard')
-<style type="text/css">
-	
- .wrapper {
-     background: #FFF;
-     padding: 20px;
-}
- h3 {
-     display: block;
-     width: 100%;
-     text-align: center;
-     font-size: 30px;
-     color: #FFF;
-     font-weight: 600;
-     font-family: cursive;
-     text-shadow: 0 0 46px coral;
-}
- .group{
-     margin: 15px;
-}
- .toggle {
-     display: none;
-}
- .toggle, .toggle:after, .toggle:before, .toggle *, .toggle *:after, .toggle *:before, .toggle + .toggle-btn {
-     box-sizing: border-box;
-}
- .toggle::selection, .toggle:after::selection, .toggle:before::selection, .toggle *::selection, .toggle *:after::selection, .toggle *:before::selection, .toggle + .toggle-btn::selection {
-     background: none;
-}
- .toggle + .toggle-btn {
-     outline: 0;
-     display: block;
-     width: 4em;
-     height: 2em;
-     position: relative;
-     cursor: pointer;
-     user-select: none;
-}
- .toggle + .toggle-btn:after, .toggle + .toggle-btn:before {
-     position: relative;
-     display: block;
-     content: "";
-     width: 50%;
-     height: 100%;
-}
- .toggle + .toggle-btn:after {
-     left: 0;
-}
- .toggle + .toggle-btn:before {
-     display: none;
-}
- .toggle:checked + .toggle-btn:after {
-     left: 50%;
-}
- .toggle-switch + .toggle-btn {
-     background: #f0f0f0;
-     border-radius: 2em;
-     padding: 2px;
-     transition: all 0.4s ease;
-}
- .toggle-switch + .toggle-btn:after {
-     border-radius: 50%;
-     background: #fff;
-     transition: all 0.2s ease;
-}
- .group:nth-child(1) .toggle-switch:checked + .toggle-btn {
-     background: #388e3d;
-}
- .group:nth-child(2) .toggle-switch:checked + .toggle-btn {
-     background: #ff3547;
-}
- .group:nth-child(3) .toggle-switch:checked + .toggle-btn {
-     background: #3f51b5;
-}
- .group:last-child .toggle-switch:checked + .toggle-btn {
-     background:#f57c00;
-}
- </style>
+
 <div class="content">
 					<div class="container-fluid">
 						<h4 class="page-title" id="ddd">Family Value</h4>
@@ -127,7 +51,7 @@
 													</td>
 													<td>
 														<a href="{{url('admin/familyvalue/delete')}}/{{$data->id}}">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>
@@ -189,7 +113,7 @@
 					       	<input type="hidden" id="id" name="id" >
 					          <div class="form-group">
 					            <label for="message-text" class="col-form-label">Family Value</label>
-					            <input class="form-control" name="familyvalue" id="familystatus" placeholder="Enter Family value" required>
+					            <input class="form-control" name="familyvalue" id="edit-familystatus" placeholder="Enter Family value" required>
 					          </div>
 					       
 					      </div>
@@ -212,7 +136,7 @@
 			                   	success:function(response){
 			                   		console.log(response);
 			                    	$('#id').val(response.id);
-			                    	$('#familyvalue').val(response.familyvalue)
+			                    	$('#edit-familystatus').val(response.familyvalue)
 			                   	}
 			                   });
 						}

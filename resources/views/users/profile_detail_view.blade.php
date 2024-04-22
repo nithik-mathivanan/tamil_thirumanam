@@ -8,46 +8,54 @@
                     <div class="profile">
                         <div class="pg-pro-big-im">
                             <div class="s1">
-                                <img src="images/profiles/profile-large.jpg" loading="lazy" class="pro" alt="">
+                                <img src="{{asset('public/images/uploads/')}}/{{json_decode($profile->getImages->images)[0]}}" loading="lazy" class="pro" alt="">
                             </div>
                             <div class="s3">
                                 <a href="#!" class="cta fol cta-chat">Chat now</a>
-                                <span class="cta cta-sendint" data-toggle="modal" data-target="#sendInter">Send
-                                    interest</span>
+                                @if($interest_status==0)
+                                    <a href="{{url('user/send-interest')}}/{{$profile->user_id}}"><span class="cta cta-sendint" data-toggle="modal" data-target="#sendInter">Send
+                                    interest</span></a>
+                                @elseif($interest_status =='send')
+                                     <a href="#"><span class="cta cta-sendint" data-toggle="modal" data-target="#sendInter">
+                                    Interest Sent <i class="fa fa-check"></i></span></a>
+                                @elseif($interest_status =='recieved')
+                                <a href="{{url('user/profile_interests')}}"><span class="cta cta-sendint" data-toggle="modal" data-target="#sendInter">
+                                    Interest recieved <i class="fa fa-envelope"></i></span></a>
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="profi-pg profi-bio">
                         <div class="lhs">
                             <div class="pro-pg-intro">
-                                <h1>Angelina Jolie</h1>
+                                <h1>{{$profile->fullname}}</h1>
                                 <div class="pro-info-status">
-                                    <span class="stat-1"><b>100</b> viewers</span>
-                                    <span class="stat-2"><b>Available</b> online</span>
+                                    <!-- <span class="stat-1"><b>100</b> viewers</span>
+                                    <span class="stat-2"><b>Available</b> online</span> -->
                                 </div>
                                 <ul>
                                     <li>
                                         <div>
-                                            <img src="images/icon/pro-city.png" loading="lazy" alt="">
-                                            <span>City: <strong>New York</strong></span>
+                                            <img src="{{asset('/users_assets/images/icon/pro-city.png')}}" loading="lazy" alt="">
+                                            <span>City: <strong>{{$profile->city}}</strong></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div>
-                                            <img src="images/icon/pro-age.png" loading="lazy" alt="">
-                                            <span>Age: <strong>21</strong></span>
+                                            <img src="{{asset('/users_assets/images/icon/pro-age.png')}}" loading="lazy" alt="">
+                                            <span>Age: <strong>{{$profile->age}}</strong></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div>
-                                            <img src="images/icon/pro-city.png" loading="lazy" alt="">
-                                            <span>Height: <strong>5.7</strong></span>
+                                            <img src="{{asset('/users_assets/images/icon/pro-city.png')}}" loading="lazy" alt="">
+                                            <span>Height: <strong>{{$profile->height}} cm</strong></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div>
-                                            <img src="images/icon/pro-city.png" loading="lazy" alt="">
-                                            <span>Job: <strong>Working</strong></span>
+                                            <img src="{{asset('/users_assets/images/icon/pro-city.png')}}" loading="lazy" alt="">
+                                            <span>Job: <strong>{{$profile->joboccu}}</strong></span>
                                         </div>
                                     </li>
                                 </ul>
@@ -67,27 +75,16 @@
                             <div class="pr-bio-c pr-bio-gal" id="gallery">
                                 <h3>Photo gallery</h3>
                                 <div id="image-gallery">
+                                    @foreach(json_decode($profile->getImages->images) as $data)
                                     <div class="pro-gal-imag">
                                         <div class="img-wrapper">
-                                            <a href="#!"><img src="images/profiles/subprofile.jpg" class="img-responsive" alt=""></a>
+                                            <a href="#!"><img src="{{asset('public/images/uploads/')}}/{{$data}}" class="img-responsive" alt=""></a>
                                             <div class="img-overlay"><i class="fa fa-arrows-alt" aria-hidden="true"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="pro-gal-imag">
-                                        <div class="img-wrapper">
-                                            <a href="#!"><img src="images/profiles/subprofile1.jpg" class="img-responsive" alt=""></a>
-                                            <div class="img-overlay"><i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro-gal-imag">
-                                        <div class="img-wrapper">
-                                            <a href="#!"><img src="images/profiles/subprofile.jpg" class="img-responsive" alt=""></a>
-                                            <div class="img-overlay"><i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                    
                                 </div>
                             </div>
                             <!-- END PROFILE ABOUT -->
@@ -98,19 +95,19 @@
                             <div class="pr-bio-c pr-bio-info">
                                 <h3>Personal information</h3>
                                 <ul>
-                                    <li><b>Name:</b> Angelina Jolie</li>
-                                    <li><b>Fatheres name:</b> John smith</li>
-                                    <li><b>Family name:</b> Joney family</li>
-                                    <li><b>Age:</b> 24</li>
-                                    <li><b>Date of birth:</b>03 Jan 1998</li>
-                                    <li><b>Height:</b>167cm</li>
-                                    <li><b>Weight:</b>65kg</li>
-                                    <li><b>Degree:</b> MSC Computer Science</li>
-                                    <li><b>Religion:</b> Any</li>
-                                    <li><b>Profession:</b> Working</li>
-                                    <li><b>Company:</b> Google</li>
-                                    <li><b>Position:</b> Web developer</li>
-                                    <li><b>Salary:</b> $1000 p/m</li>
+                                    <li><b>Name:</b> {{$profile->fullname}}</li>
+                                    <li><b>Fatheres name:</b> {{$profile->father_name}}</li>
+                                   
+                                    <li><b>Age:</b> {{$profile->age}}</li>
+                                    <li><b>Date of birth:</b>{{date('d-m-Y',strtotime($profile->dob))}}</li>
+                                    <li><b>Height:</b>{{$profile->height}} cm</li>
+                                    <li><b>Weight:</b>{{$profile->weight}} Kg</li>
+                                    <li><b>Degree:</b> {{$profile->education}}</li>
+                                    <li><b>Religion:</b> {{$profile->getReligion->religion}}</li>
+                                    <li><b>Profession:</b> {{$profile->job_type}}</li>
+                                    <li><b>Company:</b> {{$profile->company_name}}</li>
+                                    <li><b>Position:</b>{{$profile->joboccu}}</li>
+                                    <li><b>Salary:</b> {{$profile->salary}} p.a</li>
                                 </ul>
                             </div>
                             <!-- END PROFILE ABOUT -->
@@ -118,29 +115,32 @@
                             <div class="pr-bio-c pr-bio-hob">
                                 <h3>Hobbies</h3>
                                 <ul>
-                                    <li><span>Modelling</span></li>
-                                    <li><span>Watching movies</span></li>
-                                    <li><span>Playing volleyball</span></li>
-                                    <li><span>Hangout with family</span></li>
-                                    <li><span>Adventure travel</span></li>
-                                    <li><span>Books reading</span></li>
-                                    <li><span>Music</span></li>
-                                    <li><span>Cooking</span></li>
-                                    <li><span>Yoga</span></li>
+                                    @foreach(explode(',',$profile->hobbies) as $hobbie)
+                                    <li><span>{{$hobbie}}</span></li>
+                                    @endforeach
+                                   
                                 </ul>
                             </div>
                             <!-- END PROFILE ABOUT -->
                             <!-- PROFILE ABOUT -->
                             <div class="pr-bio-c menu-pop-soci pr-bio-soc">
+                                @if($profile->facebook!=null || $profile->linkedIn!=null || $profile->youtube!=null || $profile->instagram!=null)
                                 <h3>Social media</h3>
                                 <ul>
-                                    <li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                                    <li><a href="#!"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    @if($profile->facebook!=null)
+                                    <li><a href="{{$profile->facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    @endif
+                                     @if($profile->linkedIn!=null)
+                                    <li><a href="{{$profile->linkedin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                    @endif
+                                     @if($profile->youtube!=null)
+                                    <li><a href="{{$profile->youtube}}"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                                    @endif
+                                     @if($profile->instagram!=null)
+                                    <li><a href="{{$profile->instagram}}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    @endif
                                 </ul>
+                                @endif
                             </div>
                             <!-- END PROFILE ABOUT -->
 
@@ -239,80 +239,7 @@
     </section>
     <!-- END PROFILE -->
 
-    <!-- INTEREST POPUP -->
-    <div class="modal fade" id="sendInter">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title seninter-tit">Send interest to <span class="intename">Jolia</span></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body seninter">
-                    <div class="lhs">
-                        <img src="images/profiles/1.jpg" alt="" class="intephoto1">
-                    </div>
-                    <div class="rhs">
-                        <h4><span class="intename1">Jolia</span> Can able to view the below details</h4>
-                        <ul>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_about" checked="">
-                                    <label for="pro_about">About section</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_photo">
-                                    <label for="pro_photo">Photo gallery</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_contact">
-                                    <label for="pro_contact">Contact info</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_person">
-                                    <label for="pro_person">Personal info</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_hobbi">
-                                    <label for="pro_hobbi">Hobbies</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="chbox">
-                                    <input type="checkbox" id="pro_social">
-                                    <label for="pro_social">Social media</label>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="form-floating">
-                            <textarea class="form-control" id="comment" name="text"
-                                placeholder="Comment goes here"></textarea>
-                            <label for="comment">Write some message to <span class="intename"></span></label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Send interest</button>
-                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- END INTEREST POPUP -->
+    
 
     <!--- CHAT CONVERSATION BOX START --->
     <div class="chatbox">

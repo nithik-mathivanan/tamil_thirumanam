@@ -1,43 +1,64 @@
 @extends('users/sidebarlayout')
 @section('container1')
 
-
-<div class="alert alert-success">
-{{session('message')}}
-</div>
-
+ @if(session()->has('success'))
+    <div class="alert alert-success font-weight-bold text-dark">
+        {{ session()->get('success') }}
+    </div>
+@endif
 <div class="col-md-12 db-sec-com db-new-pro-main">
     <h2 class="db-tit">New Profiles Matches</h2>
     @foreach($matching_profile as $list)  
     <ul class="slider">
         @foreach($userdetail as $list1)
-                                @if($list1->gender!=$list->gender && $list1->caste==$list->caste)
-        <li>
-            <div class="db-new-pro">
+            @if($list1->gender!=$list->gender && $list1->caste==$list->caste)
+            <li>
+                <div class="db-new-pro">
+                    @php
+                    $imagedata = json_decode($list->images, true);
+                    $firstimage = ($imagedata[0])?$imagedata[0]:"";
+                    @endphp
+                    <img src="{{asset('public/images/uploads/'.$firstimage)}}" alt="" class="profile">
+                    <div>
+                        <h5>{{$list->fullname}}</h5>
+                        <span class="city">{{$list->city}}</span>
+                        <span class="age">{{$list->age}} Years old</span>
+                    <?php $interest =  App\Models\Interest::where('user_id',Auth::user()->id)->where('interest_on',$list->id)->first();?>
+                   
+                    </div>
+                    <div class="pro-ave" title="User currently available">
+                        <span class="pro-ave-yes"></span>
+                    </div>
+                    <a href="{{url('/user/profile_detail_view')}}/{{$list->id}}" class="fclick">&nbsp;</a>
                     
-                        @php
-                        $imagedata = json_decode($list->images, true);
-                        $firstimage = ($imagedata[0])?$imagedata[0]:"";
-                        @endphp
-                <img src="{{asset('/images/uploads/'.$firstimage)}}" alt="" class="profile">
-                <div>
-                    <h5>{{$list->fullname}}</h5>
-                    <span class="city">{{$list->city}}</span>
-                    <span class="age">{{$list->age}} Years old</span>
                 </div>
-                <div class="pro-ave" title="User currently available">
-                    <span class="pro-ave-yes"></span>
-                </div>
-                <a href="{{url('user/user_profile_detail')}}" class="fclick" target="_blank">&nbsp;</a>
-               
-            </div>
-        </li>
-        @endif
+                
+            </li>
+            @endif
         @endforeach
        
     </ul>
     @endforeach
+    <ul>
+        <a href="{{route('match-list')}}">
+            <li>
+                <div class="db-new-pro">
+                        
+                          
+                    <img src="{{asset('public/images/uploads/showmore.jpg')}}" alt="" class="profile">
+                    <div>
+                        <h5>SHOW MORE</h5>
+                    
+                    
+                    </div>
+                </div>
+                
+            </li>
+        </a>
+    </ul>
 </div>
+
+
 <div class="row">
     <div class="col-md-12 col-lg-6 col-xl-4 db-sec-com">
         <h2 class="db-tit">Profiles status</h2>
@@ -132,7 +153,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="menu1" class="container tab-pane fade"><br>
+                            <div id="menu1" class="container tab-ane fade"><br>
                                 <div class="db-inte-prof-list">
                                     <ul>
                                         <li>

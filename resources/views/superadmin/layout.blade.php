@@ -136,8 +136,8 @@
 					</div>
 				</nav>
 			</div>
-			<div class="sidebar">
-				<div class="scrollbar-inner sidebar-wrapper">
+			<div class="sidebar" >
+				<div class="scrollbar-inner sidebar-wrapper" style="margin-top:10%">
 					<div class="user">
 						<div class="photo">
 							<img src="{{asset('public/admin_files/img/profile.jpg')}}">
@@ -173,115 +173,132 @@
 							</div>
 						</div>
 					</div>
-					<ul class="nav">
-						<li class="nav-item active">
-							<a href="{{route('admin-dashboard')}}">
-								<i class="la la-dashboard"></i>
-								<p>Dashboard</p>
-								
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('religion')}}">
-								<i class="la la-table"></i>
-								<p>Religion</p>
-								
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('community')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Community</p>
-								
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('language')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Languages</p>
-								
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('employment')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Employment</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('occupation')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Occupation</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('profile')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Profile</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('jobtype')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Job Type</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('education')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Highest Education</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('familystatus')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Family Status</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('familytype')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Family Type</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('familyvalue')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Family Value</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('parentalstatus')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Parental Status</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('eatinghabbit')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Eating Habbit</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('countries')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Countries</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('states')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>State</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{route('cities')}}">
-								<i class="la la-keyboard-o"></i>
-								<p>Cities</p>
-							</a>
-						</li>
+					<div>
 						
-					</ul>
+						
+						<ul class="nav">
+							<li class="nav-item active">
+								<a href="{{route('admin-dashboard')}}">
+									<i class="la la-dashboard"></i>
+									<p>Dashboard</p>
+									
+								</a>
+							</li>
+							<li class="nav-item active">
+								<a href="#">
+									<i class="la la-dashboard"></i>
+									<p>Master</p>
+									
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('religion')}}">
+									<i class="la la-table"></i>
+									<p>Religion</p>
+									
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('community')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Community</p>
+									
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('language')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Languages</p>
+									
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('employment')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Employment</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('occupation')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Occupation</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('profile')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Profile</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('jobtype')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Job Type</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('education')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Highest Education</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('familystatus')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Family Status</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('familytype')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Family Type</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('familyvalue')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Family Value</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('parentalstatus')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Parental Status</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('eatinghabbit')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Eating Habbit</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('countries')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Countries</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('states')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>State</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('cities')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Cities</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{route('interest')}}">
+									<i class="la la-keyboard-o"></i>
+									<p>Interest</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+					
 				</div>
 			</div>
 			<div class="main-panel">

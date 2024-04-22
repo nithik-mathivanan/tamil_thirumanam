@@ -32,8 +32,8 @@ class OccupationController extends Controller
     }
 
     public function update(Request $request){
-       
-        $update = Occupation::find($request->id);
+      
+        $update = Occupation::find($request->occupation_id);
         $update->occupation = $request->occupation;
         $update->update();
         return redirect()->route('occupation')->withSuccess( 'Occupation has been updated successfully' );

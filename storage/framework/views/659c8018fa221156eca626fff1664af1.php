@@ -10,11 +10,15 @@
                     $firstimage = $imagedata[0];
                     ?>
                     <div class="img">
-                        <img src="<?php echo e(asset('/images/uploads/'.$firstimage)); ?>" loading="lazy" alt="">
+                        <img src="<?php echo e(asset('public/images/uploads/'.$firstimage)); ?>" loading="lazy" alt="">
                     </div>
-                    
-                    <div class="edit">
-                        <a href="<?php echo e(url('user/profile_details/'.$list->customer_id)); ?>" class="cta-dark">Edit profile</a>
+                    <div class="row" style="display:flex;">
+                        <div class="edit col-lg-6 bg-success">
+                            <a href="<?php echo e(url('user/upload_photo/'.$list->customer_id)); ?>" class="cta-dark">Upload Photo</a>
+                        </div>
+                        <div class="edit col-lg-6 bg-primary">
+                            <a href="<?php echo e(url('user/edit_profile_details/'.$list->customer_id)); ?>" class="cta-dark">Edit profile</a>
+                        </div>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
@@ -29,7 +33,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="#">Edid profile</a>
+                                <a class="dropdown-item" href="#">Edit profile</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">View profile</a>

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('users_assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('users_assets/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('users_assets/css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
@@ -32,7 +33,7 @@
     </div>
 
     <div class="head-top">
-        <div class="container">
+        <div class="container" style="height: 35px;">
             <div class="row">
                 <div class="lhs">
                     <ul>
@@ -151,19 +152,7 @@
                                         <div class="row">
                                             <h4 class="tit">Category</h4>
                                             <ul>
-                                                <!--<li>
-                                                    <div class="menu-box menu-box-2">
-                                                        <h5>Browse profiles <span>1200+ Verified profiles</span></h5>
-                                                        <span class="explor-cta">More details</span>
-                                                        @if(session()->has('USERS_ID')!=null)
-                                                        <a href="{{url('user/matching_profiles')}}" class="fclick"></a>
-                                                        @else
-                                                        <a href="{{url('user')}}" class="fclick"></a>
-                                                        @endif
-
-                                                    </div> -->
-                                                </li>
-                                                 <li>
+                                                <li>
                                                     <div class="menu-box menu-box-2">
                                                         <h5>Browse profiles <span>1200+ Verified profiles</span></h5>
                                                         <span class="explor-cta">More details</span>
@@ -196,11 +185,7 @@
                                     </div>
                                 </div>
                             </li>
-                            
-                            
-                            
                             <li><a href="{{url('user/signup')}}"><span>Register</span></a></li>
-                            <!-- <li><a href="{{url('user/dashboard')}}"><span>Dashboard</span></a></li> -->
                             <li class="smenu-pare">
                                 <span class="smenu">Dashboard</span>
                                 <div class="smenu-open smenu-single">
@@ -212,20 +197,15 @@
                                         <li><a href="user-plan.html">My plan details</a></li>
                                         <li><a href="user-setting.html">Profile settings</a></li>
                                         <li><a href="user-profile-edit.html">Edit full profile</a></li>
-                                        <li><a href="{{url('user')}}">Login</a></li>
+                                        
                                     </ul>
                                 </div>
                             </li>
+                            
+                           
                         </ul>
                     </div>
 
-                    <!-- USER PROFILE -->
-                    <div class="al">
-                        <div class="head-pro">
-                            <!-- <img src="" alt="" loading="lazy"> -->
-                              <a href="{{url('user')}}" class="text-decoration-none"><h6>LOGIN</h6></a>
-                        </div>
-                    </div>
 
                     <!--MOBILE MENU-->
                     <div class="mob-menu">

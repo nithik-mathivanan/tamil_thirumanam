@@ -1,5 +1,12 @@
 @extends('users/layout')
 @section('container')
+
+<style type="text/css">
+    .profile-label:hover{
+        background-color: green;
+        color: white;
+    }
+</style>
  
 <body>
  <section>
@@ -170,25 +177,21 @@
                         </div>
                         
                         <div class="all-list-sh">
-                        @foreach($matching_profile as $list)                            
+                        @foreach($match as $list)                            
                             <ul>                                
-                                @foreach($userdetail as $list1)
-                                @if($list1->gender!=$list->gender && $list1->caste==$list->caste)
+                               
                                 <li>
                                     <div class="all-pro-box user-avil-onli" data-useravil="avilyes"
                                         data-aviltxt="Available online">
                                         <!--PROFILE IMAGE-->
                                         <div class="pro-img">
                                             
-                                            @php
-                                            $imagedata = json_decode($list->images, true);
-                                            $firstimage = $imagedata[0];
-                                            @endphp
+                                         
                                             <a href="#">
-                                                <img src="{{asset('/images/uploads/'.$firstimage)}}" alt="">
+                                                <img src="{{asset('public/images/uploads/')}}/{{json_decode($list->getImages->images)[0]}}" alt="">
                                             </a>
                                            
-                                            <div class="pro-ave" title="User currently available">
+                                           <!--  <div class="pro-ave" title="User currently available">
                                                 <span class="pro-ave-yes"></span>
                                             </div>
                                             <div class="pro-avl-status">
@@ -197,7 +200,7 @@
                                             <div class="pro-avl-status">
                                                 <span class="marqu">Last login 10 mins ago | I'll be available on 10:00
                                                     AM</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <!--END PROFILE IMAGE-->
 
@@ -208,13 +211,13 @@
                                                 <span>{{$list->education}}</span>
                                                 <span>{{$list->job_type}}</span>
                                                 <span>{{$list->age}} Yeard old</span>
-                                                <span>Height: {{$list->height}}cms</span>
+                                                <span>Height: {{$list->height}}cm </span>
                                             </div>
                                             <div class="links">
-                                                <span class="cta-chat">Chat now</span>
-                                                <a href="#!">WhatsApp</a>
-                                                <a href="#!" class="cta cta-sendint" data-bs-toggle="modal" data-bs-target="#sendInter">Send interest</a>
-                                                <a href="profile-details.html">More detaiils</a>
+                                                <span  class="profile-label">Chat now</span>
+                                                <a href="#!" class="profile-label">WhatsApp</a>
+                                                
+                                                <a class="profile-label" href="{{url('/user/profile_detail_view')}}/{{$list->user_id}}">More detaiils</a>
                                             </div>
                                         </div>
                                         <!--END PROFILE NAME-->
@@ -224,8 +227,7 @@
                                         <!--END SAVE-->
                                     </div>
                                 </li>
-                                @endif
-                                @endforeach
+                               
                                 
                                 
                             </ul>

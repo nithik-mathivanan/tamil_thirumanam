@@ -35,138 +35,93 @@
     <div id="home" class="container tab-pane active"><br>
       <div class="db-inte-prof-list">
             <ul>
+                @foreach($interest as $data)
+                @if($data->status==0)
                 <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men1.jpg" alt=""> <span class="badge bg-primary user-pla-pat">Platinum user</span></div>
+
+                    <div class="db-int-pro-1"> <img src="{{asset('public/images/uploads')}}/{{json_decode($data->getUserImg->images)[0]}}" alt=""> <span class="badge bg-primary user-pla-pat">Platinum user</span></div>
                     <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
+                        <h5>{{$data->getUser->name}}</h5> 
                         <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
+                            <li>City: <strong>{{$data->getProfile->city}}</strong></li>
+                            <li>Age: <strong>{{$data->getProfile->age}}</strong></li>
+                            <li>Height: <strong>{{$data->getProfile->height}} cm</strong></li>
+                            <li>Job: <strong>{{$data->getProfile->joboccu}}</strong></li>
                         </ol>
                         <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
+                            <li>Request on: {{date('h:i a, d M Y',strtotime($data->Created_at))}}</li>
                         </ol>
-                        <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
+                        <a href="{{url('/user/profile_detail_view')}}/{{$data->getUser->id}}" class="cta-5" target="_blank">View full profile</a>
                     </div>
                     <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-success btn-sm">Accept</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">Denay</button>
+                        <a href="{{url('user/accept-interest')}}/{{$data->id}}"><button type="button" class="btn btn-success btn-sm">Accept</button></a>
+                        <a href="{{url('user/deny-interest')}}/{{$data->id}}"><button type="button" class="btn btn-outline-danger btn-sm">Denay</button></a>
                     </div>
                 </li>
-                <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men2.jpg" alt=""> <span class="badge bg-primary user-pla-gold">Gold user</span></div>
-                    <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
-                        <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
-                        </ol>
-                        <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
-                        </ol>
-                        <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
-                    </div>
-                    <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-success btn-sm">Accept</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">Denay</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men3.jpg" alt=""> <span class="badge bg-primary user-pla-free">Free user</span></div>
-                    <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
-                        <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
-                        </ol>
-                        <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
-                        </ol>
-                        <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
-                    </div>
-                    <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-success btn-sm">Accept</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">Denay</button>
-                    </div>
-                </li>
-                <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men4.jpg" alt=""> </div>
-                    <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
-                        <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
-                        </ol>
-                        <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
-                        </ol>
-                        <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
-                    </div>
-                    <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-success btn-sm">Accept</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">Denay</button>
-                    </div>
-                </li>
+                @endif
+                @endforeach
             </ul>
         </div>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
         <div class="db-inte-prof-list">
-            <ul>
+             <ul>
+                @foreach($interest as $data)
+                @if($data->status==2)
                 <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men5.jpg" alt=""> </div>
+
+                    <div class="db-int-pro-1"> <img src="{{asset('public/images/uploads')}}/{{json_decode($data->getUserImg->images)[0]}}" alt=""> <span class="badge bg-primary user-pla-pat">Platinum user</span></div>
                     <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
+                        <h5>{{$data->getUser->name}}</h5> 
                         <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
+                            <li>City: <strong>{{$data->getProfile->city}}</strong></li>
+                            <li>Age: <strong>{{$data->getProfile->age}}</strong></li>
+                            <li>Height: <strong>{{$data->getProfile->height}} cm</strong></li>
+                            <li>Job: <strong>{{$data->getProfile->joboccu}}</strong></li>
                         </ol>
                         <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
-                            <li>Accept on: 3:000 PM, 21 August 2024</li>
+                            <li>Request on: {{date('h:i a, d M Y',strtotime($data->Created_at))}}</li>
                         </ol>
-                        <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
+                       <a href="{{url('/user/profile_detail_view')}}/{{$data->getUser->id}}" class="cta-5" target="_blank">View full profile</a>
                     </div>
                     <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-outline-danger btn-sm">Denay</button>
+                        
+                        <a href="{{url('user/deny-interest')}}/{{$data->id}}"><button type="button" class="btn btn-outline-danger btn-sm">Denay</button></a>
                     </div>
                 </li>
+                @endif
+                @endforeach
             </ul>
         </div>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
         <div class="db-inte-prof-list">
             <ul>
+                @foreach($interest as $data)
+                @if($data->status==3)
                 <li>
-                    <div class="db-int-pro-1"> <img src="images/profiles/men1.jpg" alt=""> </div>
+
+                    <div class="db-int-pro-1"> <img src="{{asset('public/images/uploads')}}/{{json_decode($data->getUserImg->images)[0]}}" alt=""> <span class="badge bg-primary user-pla-pat">Platinum user</span></div>
                     <div class="db-int-pro-2">
-                        <h5>John Smith</h5> 
+                        <h5>{{$data->getUser->name}}</h5> 
                         <ol class="poi">
-                            <li>City: <strong>Illunois</strong></li>
-                            <li>Age: <strong>21</strong></li>
-                            <li>Height: <strong>5.7</strong></li>
-                            <li>Job: <strong>Working</strong></li>
+                            <li>City: <strong>{{$data->getProfile->city}}</strong></li>
+                            <li>Age: <strong>{{$data->getProfile->age}}</strong></li>
+                            <li>Height: <strong>{{$data->getProfile->height}} cm</strong></li>
+                            <li>Job: <strong>{{$data->getProfile->joboccu}}</strong></li>
                         </ol>
                         <ol class="poi poi-date">
-                            <li>Request on: 10:30 AM, 18 August 2024</li>
-                            <li>Denay on: 3:000 PM, 21 August 2024</li>
+                            <li>Request on: {{date('h:i a, d M Y',strtotime($data->Created_at))}}</li>
                         </ol>
                         <a href="profile-details.html" class="cta-5" target="_blank">View full profile</a>
                     </div>
                     <div class="db-int-pro-3">
-                        <button type="button" class="btn btn-success btn-sm">Accept</button>
+                        <a href="{{url('user/accept-interest')}}/{{$data->id}}"><button type="button" class="btn btn-success btn-sm">Accept</button></a>
+                        
                     </div>
                 </li>
+                @endif
+                @endforeach
             </ul>
         </div>
     </div>

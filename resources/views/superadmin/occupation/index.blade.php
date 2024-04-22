@@ -64,8 +64,8 @@
 														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit({{$data->id}})"><i class="fa fa-pencil"></i></button>
 													</td>
 													<td>
-														<a href="{{url('admin/occupation/delete')}}/{{$data->id}}">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+														<a href="{{url('admin/Occupation/delete')}}/{{$data->id}}">
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>

@@ -5,11 +5,15 @@ use Auth;
 use Hash;
 use App\Http\Controllers\Controller;
 use App\Models\Users\Users;
-use App\Models\Profile;
+use App\Models\ProfileSelector;
+use App\Models\Community;
+use App\Models\ProfileImage;
+use App\Models\Cities;
 use App\Models\Countries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\States;
 use App\Models\Users\UserOtp;
 
 class UsersController extends Controller
@@ -17,54 +21,34 @@ class UsersController extends Controller
    
     public function index(Request $request)
     {
-        if($request->session()->has('USERS_LOGIN')){
-        return redirect('user/dashboard');
-      }
-      else
-      {
-        return view('users.login');
-      }
+       
         return view('users.login');
     }
 
-   public function signup()
-   {
-    $profile = Profile::where('is_deleted',0)->where('status',0)->get();
+   public function signup(){
+    $profile = ProfileSelector::where('is_deleted',0)->where('status',0)->get();
     $country_code = Countries::get();
-   
     return view('users.signup')->with(['profile'=>$profile,'country_code'=>$country_code]);
    }
 
-   public function signup_process(Request $request)
-   {
-     $valid=Validator::make($request->all(),[
-        "name"=>'required',
-        "email"=>'required|unique:users,email',
-        "password"=>'required',
-        "phone"=>'required|numeric|digits:10',
-        "country_code"=>'required',
-    ]);
+   public function signup_process(Request $request){
+        $request->validate([
+            "name"=>'required',
+            "mprofile_by"=>'required',
+            "email"=>'required|unique:users,email',
+            "phone"=>'required|numeric|digits:10|unique:users,phone',
+            "country_code"=>'required'
+        ]);
      
-     if(!$valid->passes()){
-        $request->session()->flash('message','You Already Registered. Please Try to Login');
-        return redirect('user/signup');
-    }
-    else
-    {
-
-    $year = date('Y');
-    $month = date('m');
-    $prefix = 'VT';
-
-   /* for ($counter=9999; $counter >= 1001; $counter--)
-    {
-        $rand_id = $prefix.$year.$month.str_pad($counter, 4, '0', STR_PAD_LEFT);
-    }
-    */
-     $rand_id = $prefix.$year.$month.'_'.rand(1000,9999);
-    $profile_by=$request->profile_by;
     
-     $arr=[
+        $year = date('Y');
+        $month = date('m');
+        $prefix = 'VT';
+
+        $rand_id = $prefix.$year.$month.'_'.rand(1000,9999);
+        $profile_by=$request->profile_by;
+        
+        $arr=[
             "name"=>$request->name,
             "email"=>$request->email,
             "password"=>Hash::make($request->password),
@@ -76,64 +60,63 @@ class UsersController extends Controller
             "rand_id"=>$rand_id,
             "created_at"=>date('Y-m-d h:i:s'),
             "updated_at"=>date('Y-m-d h:i:s')
-
         ];
 
-        
         $query=DB::table('users')->insert($arr);
-        
-    
-     return redirect()->route('user-login');
+        return redirect()->route('user-login')->with('success','Your Account Has Been Registered, Login To Continue');
     }
-     
-     
-   }
    
 
-    public function dashboard(Request $request)
-    {
-       
-    
+    public function dashboard(Request $request){
         if(Auth::user()->status==1){
-            
             return redirect('user/profile_details/'.Auth::user()->rand_id);
         }
+
         $result['userdetail']=DB::table('users')
         ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
         ->leftJoin('match_details','match_details.mcustomer_id','=','profiles.customer_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])->where(['users.status'=>1])->get();
+        ->where('users.id',Auth::user()->id)->where('users.status',2)->get();
 
         $result['profile']=DB::table('users')
         ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
         ->leftJoin('profile_images','profile_images.pcustomer_id','=','users.rand_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])
-        ->where(['users.status'=>1])
+        ->where('users.id',Auth::user()->id)
+        ->where('users.status',2)
         ->get();
 
-        $result['matching_profile']=DB::table('users')
+         $result['matching_profile']=DB::table('users')
         ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
         ->leftJoin('profile_images','profile_images.pcustomer_id','=','profiles.customer_id')
         ->leftJoin('match_details','match_details.mcustomer_id','=','profile_images.pcustomer_id')
-        ->distinct()->select('users.id','profiles.fullname','profiles.gender','profiles.age','profiles.height','profiles.job_type','profiles.education','profile_images.images','match_details.mgender','profiles.id as pid','profiles.caste','profiles.city','profiles.district')
-        ->where(['users.status'=>1])
+        ->distinct()
+        ->select('users.id','profiles.fullname','profiles.gender','profiles.age','profiles.height','profiles.job_type','profiles.education','profile_images.images','match_details.mgender','profiles.id as pid','profiles.caste','profiles.city','profiles.district')
+        ->where(['users.status'=>2])
         ->get();
+
+
+        
 
         return view('users.dashboard',$result);
     }
-    public function profile_view(Request $request)
-    {
-        $result['userdetail']=DB::table('users')->where(['id'=>$request->session()->get('USERS_ID')])->where(['status'=>1])->get();
+
+    public function upload_photo($id){
+        $photos = ProfileImage::where('pcustomer_id',Auth::user()->rand_id)->first();
+
+        return view('users.edit_photo')->with('photos',$photos);
+
+        
+    }
+    public function profile_view(Request $request){
+        $result['userdetail']=DB::table('users')->where('id',Auth::user()->id)->where('status',2)->get();
 
         $result['profile']=DB::table('users')
         ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
         ->leftJoin('profile_images','profile_images.pcustomer_id','=','users.rand_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])
-        ->where(['users.status'=>1])
+        ->where('users.id',Auth::user()->id)
+        ->where(['users.status'=>2])
         ->get();
-        //  echo "<pre>";
-        // print_r($result);
-        // die();
 
+      
         return view('users.profile_view',$result);
     }
 
@@ -219,6 +202,18 @@ class UsersController extends Controller
         }
 
         return redirect('user/about_self'.$request->self_id);
+    }
 
+    public function getCityByState($id){
+        $state_id = States::where('name',$id)->first()->id;
+        $state = Cities::where('state_id',$state_id)->where('is_deleted',0)->where('status',0)->get();
+
+        return response($state);
+    }
+
+    public function getcasteByReligion($id)
+    {
+          $community = Community::where('religion',$id)->where('is_deleted',0)->where('status',0)->get();
+            return response($community);
     }
 }

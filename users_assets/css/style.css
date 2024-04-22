@@ -2575,7 +2575,7 @@ table td{}
 /* COMMON FORM
 /*-------------------------------------------------------*/
 .form-tit {
-    padding-bottom: 15px;
+    padding: 20px;
     border-bottom: 1px solid rgb(223, 223, 223);
     margin-bottom: 25px;
     color: rgb(52, 64, 85);
@@ -6653,7 +6653,6 @@ span.mail::before {
 }
 
 .cta-dark {
-    background: #198754;
     color: rgb(255, 255, 255);
     font-size: 13px;
     font-weight: 600;
@@ -12252,10 +12251,21 @@ h2.db-tit{
     position: relative;
     margin: auto;
     display: flex;
-    justify-content: space-evenly;
-    gap: 20px;
+    justify-content: center;/
+/*    gap: 20px;*/
     flex-wrap: wrap;
     margin-top: 10px;
+}
+
+#exs-image_show
+{
+    width: 90%;
+    border: 1px solid black;   
+    display: flex;
+    justify-content: center;/
+}
+#exs-image_show div{
+    margin-left: 2%;
 }
 
 figure
@@ -12274,4 +12284,15 @@ text-align: center;
     width: -webkit-fill-available;
     resize: horizontal;
     border: solid;
+}
+
+.error-msg{
+    font-family: Poppins, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #d92828;
+    text-align: left;
+}
+a{
+    text-decoration: none !important;
 }

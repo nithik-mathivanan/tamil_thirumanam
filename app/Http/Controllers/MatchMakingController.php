@@ -1,12 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers;
 use App\Models\MatchMaking\Users;
+use App\Models\User;
+use App\Models\Users\Profile;
+use App\Models\Users\MatchMaking;
+use App\Models\Interest;
+use App\Models\Community;
+use App\Models\Education;
+use App\Models\Eatinghabbit;
+use App\Models\Jobtype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 error_reporting(0);
 
@@ -21,26 +30,28 @@ class MatchMakingController extends Controller
           ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
           ->where(['users.status'=>1])
           ->where(['users.rand_id'=>$id])->get();
-        return view('users.match_making', $result);
+          $education = Education::where('is_deleted',0)->where('status',0)->get();
+          $jobtype = Jobtype::where('is_deleted',0)->where('status',0)->get();
+          $eatinghabbit = Eatinghabbit::where('is_deleted',0)->where('status',0)->get();
+          $profiles = $this->getProfileByUser(Auth::user()->id);
+
+          $community = Community::where('religion',$profiles->religion)->where('status',0)->where('is_deleted',0)->get();
+
+                  // dd($community);
+        return view('users.match_making', $result)->with(['jobtype'=>$jobtype,'education'=>$education,'community'=>$community,'eatinghabbit'=>$eatinghabbit, 'profiles'=>$profiles]);
     }
 
 
-      public function manage_match_making(Request $request)
-        {
+      public function manage_match_making(Request $request){
+
         $valid=Validator::make($request->all(),[
         "mcaste"=>'required',
         // "mcustomer_id"=>'required|unique:match_details',
         "msubcaste"=>'required',
         "meducation"=>'required',
         ]);
-     
-     if(!$valid->passes()){
-        $request->session()->flash('message','Already Added Data. Please Login and Update');
-        //return redirect('user/signup');
-        }
-        else
-        {
-          
+
+           
          $arr=[
             "mgender"=>$request->mgender,
             "mcustomer_id"=>$request->paaid,
@@ -64,70 +75,37 @@ class MatchMakingController extends Controller
             
         ];
 
-        
-     $query=DB::table('match_details')->insert($arr);
-     $request->session()->flash('message','Your ID Verified.');
-     //return redirect('user/verification/'.$request->paaid);
-     return redirect('user/signup');
+        $user = User::where('id',Auth::user()->id)->update(['status'=>2]); 
+        $query=DB::table('match_details')->insert($arr);
+        $request->session()->flash('message','Your ID Verified.Please Login');
+     
+        return redirect('user');
+    
     }
-    }
 
-    public function matching_profiles(Request $request)
-    {
-      $sort="";
-      $location="";
-      $view_category="";
-      $check1="";
-      $check2="";
-      $check3="";
-      $check4="";
-      $radio1="";
-      $radio2="";
-      $job_hour1="";
-      $job_hour2="";
-      $job_hour3="";
-      $job_hour4="";
-      $job_hour5="";
-      $is_selected1="";
-      $is_selected2="";
-      $is_selected3="";
-      $is_selected4="";
-      $is_radiochecked1="";
-      $is_radiochecked2="";
-      $is_job_selected1="";
-      $is_job_selected2="";
-      $is_job_selected3="";
-      $is_job_selected4="";
-        $result['userdetail']=DB::table('users')
-        ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
-        ->leftJoin('match_details','match_details.mcustomer_id','=','profiles.customer_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])->where(['users.status'=>1])->get();
+    public function matching_profiles(){
 
-
-        $result['matching_profile']=DB::table('users')
-        ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
-        ->leftJoin('profile_images','profile_images.pcustomer_id','=','profiles.customer_id')
-        ->leftJoin('match_details','match_details.mcustomer_id','=','profile_images.pcustomer_id')
-        ->distinct()->select('users.id','profiles.fullname','profiles.gender','profiles.age','profiles.height','profiles.job_type','profiles.education','profile_images.images','match_details.mgender','profiles.id as pid','profiles.caste','profiles.city','profiles.district')
-        ->where(['users.status'=>1])
-        ->get();
-        
-
-        return view('users.matching_profiles',$result);
+        if($this->getProfileByUser(Auth::user()->id)->gender=='Male'){
+            $match = Profile::with('getUser','getImages')->where('caste',$this->getPrefferenceByCustomeId(Auth::user()->rand_id)->mcaste)->where('gender','Female')->get();
+        }
+        else{
+            $match = Profile::with('getUser','getImages')->where('caste',$this->getPrefferenceByCustomeId(Auth::user()->rand_id)->mcaste)->where('gender','Male')->get();
+        }
+       
+        return view('users.matching_profiles')->with(['match'=>$match]);
     }
    
-   public function profile_interests(Request $request)
-   {
+   public function profile_interests(Request $request){
     $result['userdetail']=DB::table('users')->where(['id'=>$request->session()->get('USERS_ID')])->where(['status'=>1])->get();
+    $result['profile']=DB::table('users')
+    ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
+    ->leftJoin('profile_images','profile_images.pcustomer_id','=','users.rand_id')
+    ->where(['users.id'=>$request->session()->get('USERS_ID')])
+    ->where(['users.status'=>1])
+    ->get();
 
-        $result['profile']=DB::table('users')
-        ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
-        ->leftJoin('profile_images','profile_images.pcustomer_id','=','users.rand_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])
-        ->where(['users.status'=>1])
-        ->get();
-
-    return view('users.profile_interests',$result);
+    $interest = Interest::with('getUser','getProfile','getUserImg')->where('interest_on',Auth::user()->id)->where('status','!=',1)->get();
+    return view('users.profile_interests',$result)->with(['interest'=>$interest]);
    }
 
    public function profile_plan(Request $request)
@@ -172,18 +150,22 @@ class MatchMakingController extends Controller
     return view('users.profile_setting',$result);
    }
 
-   public function profile_detail_view(Request $request)
-   {
-     $result['userdetail']=DB::table('users')->where(['id'=>$request->session()->get('USERS_ID')])->where(['status'=>1])->get();
+   public function profile_detail_view($id){
+    
+     $profile = Profile::with('getImages','getUser','getReligion')->where('user_id',$id)->first();
+     $interest_status = 0;
 
-        $result['profile']=DB::table('users')
-        ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
-        ->leftJoin('profile_images','profile_images.pcustomer_id','=','users.rand_id')
-        ->where(['users.id'=>$request->session()->get('USERS_ID')])
-        ->where(['users.status'=>1])
-        ->get();
+     $send_status = Interest::where('user_id',Auth::user()->id)->where('interest_on',$id)->whereIn('status',[0,2])->first();
+     if($send_status){
+        $interest_status='send';
+     }
+      $recieve_status = Interest::where('interest_on',Auth::user()->id)->where('user_id',$id)->whereIn('status',[0,2])->first();
+     if($recieve_status){
+         $interest_status='recieved';
+     }
 
-    return view('users.profile_detail_view',$result);
+
+    return view('users.profile_detail_view')->with('profile',$profile)->with('interest_status',$interest_status);
    }
 
    public function expressinterests(Request $request, $id)
@@ -201,4 +183,33 @@ class MatchMakingController extends Controller
     $query=DB::table('interests')->insert($arr);
     return redirect('user/match_making/'.$users_id);
    }
+
+   public function sendInterest($user_id){
+     
+      $store = new Interest();
+      $store->user_id= Auth::user()->id;
+      $store->interest_on = $user_id;
+      $store->save();
+
+      return redirect()->back()->with('success','Your Interst has been send successfully');
+   }
+    public function acceptInterest($id){
+     
+      $store = Interest::find($id);
+      $store->status= 2;
+      $store->update();
+
+      return redirect()->back()->with('success','Your Interst has been accepted ');
+   }
+
+   public function denyInterest($id){
+     
+    $store = Interest::find($id);
+    $store->status= 3;
+    $store->update();
+
+      return redirect()->back()->with('success','Your Interst has been Rejected');
+   }
+
+  
 }

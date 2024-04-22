@@ -35,7 +35,7 @@
     </div>
 
     <div class="head-top">
-        <div class="container">
+        <div class="container" style="height: 35px;">
             <div class="row">
                 <div class="lhs">
                     <ul>
@@ -188,11 +188,22 @@
                                     </div>
                                 </div>
                             </li>
-                            
-                            
-                            
-                            <li><a href="<?php echo e(url('user/signup')); ?>"><span>Register</span></a></li>
-                            <li><a href="<?php echo e(url('user/dashboard')); ?>"><span>Dashboard</span></a></li>
+                            <li class="smenu-pare">
+                                <span class="smenu">Dashboard</span>
+                                <div class="smenu-open smenu-single">
+                                    <ul>
+                                        <li><a href="<?php echo e(url('user/dashboard')); ?>">Dashboard</a></li>
+                                        <li><a href="<?php echo e(url('/profile_view')); ?>">My profile</a></li>
+                                        <li><a href="<?php echo e(url('/profile_interest')); ?>">Interests</a></li>
+                                        <li><a href="user-chat.html">Chat lists</a></li>
+                                        <li><a href="user-plan.html">My plan details</a></li>
+                                        <li><a href="user-setting.html">Profile settings</a></li>
+                                        <li><a href="<?php echo e(url('user/edit_profile_details')); ?>/<?php echo e(Auth::user()->id); ?>">Edit full profile</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="<?php echo e(route('user-logout')); ?>"><span>Logout</span></a></li>
                         </ul>
                     </div>
 

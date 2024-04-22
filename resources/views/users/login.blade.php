@@ -1,19 +1,11 @@
-@extends('users/layout')
+@extends('front/layout')
 @section('container')
  
 <body>
 <section>
         <div class="login">
             <div class="container">
-                @if(session()->has('message')!=null)
-                <div class="alert alert-success">
-                            {{session('message')}}
-                            </div>
-                <div class="row">
-                @else
-                @endif
-
-                    <div class="inn">
+                <div class="inn">
                         <div class="lhs">
                             <div class="tit">
                                 <h2>Now <b>Find <br> your life partner</b> Easy and fast.</h2>
@@ -24,13 +16,19 @@
                             <div class="log-bg">&nbsp;</div>
                         </div>
                         <div class="rhs">
-                           
                             <div>
                                 <div class="form-tit">
                                     <h4>Start for free</h4>
                                     <h1>Login in to TamilThirumanam</h1>
                                     <p>Not a member? <a href="{{url('/user/signup')}}">Sign up now</a></p>
                                 </div>
+                                
+
+                                @if(session()->has('success'))
+                                    <div class="alert alert-success font-weight-bold text-dark">
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif  
                                 <div class="form-login">
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
@@ -42,18 +40,26 @@
                                             <label class="lb">Password:</label>
                                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                         </div>
-                                        <div class="form-group form-check">
+                                      <!--   <div class="form-group form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" name="agree"> Remember
                                                 me
                                             </label>
+                                        </div> -->
+                                         <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                               <a href="#"><p>Forget Password</p></a>
+                                            </label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Log in</button>
-                                        @if(session()->has('error'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{session('error')}}    
-                                        </div>
+                                        @if ($errors->any())
+                                        @foreach ($errors->all() as $error)
+                                            <div class="error-msg">
+                                                {{$error}}
+                                            </div>
+                                        @endforeach
                                         @endif
+                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                      
                                     </form>
                                 </div>
                             </div>

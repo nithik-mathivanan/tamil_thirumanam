@@ -5,17 +5,15 @@
             <div class="container">
                 <div class="row">
                     <div class="inn">
-                         <div class="alert alert-success">
-                            {{session('message')}}
-                            </div>
+                       
                         <div class="newrhs">
 
                             <br>
                             <div class="form-login">
                                     <form action="{{route('preferred_details.preferred_details_process')}}" method="post" enctype="multipart/form-data">
-                                        @if ($message = Session::get('success'))
-                                            <div class="alert alert-success">
-                                                <strong>{{ $message }}</strong>
+                                        @if(session()->has('success'))
+                                            <div class="alert alert-success font-weight-bold text-dark">
+                                                {{ session()->get('success') }}
                                             </div>
                                         @endif
 
@@ -38,6 +36,10 @@
                                         <div class="form-tit">
                                                 <h4>Add Photos</h4>
                                                 <h1>Atleast Add 3 Images</h1>
+                                        </div>
+                                        <div class="container">
+                                             
+                                           
                                         </div>
                                         <div class="container">
                                              <p id="num-of-files" style="text-align: center;">No Files Choosen</p>

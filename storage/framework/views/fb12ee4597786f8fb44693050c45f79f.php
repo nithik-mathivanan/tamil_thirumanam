@@ -15,11 +15,11 @@
                         $firstimage = ($imagedata[0])?$imagedata[0]:"";
                         }
                         ?>
-                        <img src="<?php echo e(asset('/images/uploads/'.$firstimage)); ?>" class="img-fluid" alt="">
+                        <img src="<?php echo e(asset('public/images/uploads/'.$firstimage)); ?>" class="img-fluid" alt="">
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                           <div class="db-nav-list">
-                            <?php if(session()->has('USERS_ID')): ?>
+                            <?php if(Auth::user()->id): ?>
 					        <ul>
 					            <li><a href="<?php echo e(url('user/dashboard')); ?>" class="act"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
 					            <li><a href="<?php echo e(url('user/profile_view')); ?>"><i class="fa fa-male" aria-hidden="true"></i>Profile</a></li>

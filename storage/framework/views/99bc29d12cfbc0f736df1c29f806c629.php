@@ -1,43 +1,64 @@
 <?php $__env->startSection('container1'); ?>
 
+ <?php if(session()->has('success')): ?>
+    <div class="alert alert-success font-weight-bold text-dark">
+        <?php echo e(session()->get('success')); ?>
 
-<div class="alert alert-success">
-<?php echo e(session('message')); ?>
-
-</div>
-
+    </div>
+<?php endif; ?>
 <div class="col-md-12 db-sec-com db-new-pro-main">
     <h2 class="db-tit">New Profiles Matches</h2>
     <?php $__currentLoopData = $matching_profile; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
     <ul class="slider">
         <?php $__currentLoopData = $userdetail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($list1->gender!=$list->gender && $list1->caste==$list->caste): ?>
-        <li>
-            <div class="db-new-pro">
+            <?php if($list1->gender!=$list->gender && $list1->caste==$list->caste): ?>
+            <li>
+                <div class="db-new-pro">
+                    <?php
+                    $imagedata = json_decode($list->images, true);
+                    $firstimage = ($imagedata[0])?$imagedata[0]:"";
+                    ?>
+                    <img src="<?php echo e(asset('public/images/uploads/'.$firstimage)); ?>" alt="" class="profile">
+                    <div>
+                        <h5><?php echo e($list->fullname); ?></h5>
+                        <span class="city"><?php echo e($list->city); ?></span>
+                        <span class="age"><?php echo e($list->age); ?> Years old</span>
+                    <?php $interest =  App\Models\Interest::where('user_id',Auth::user()->id)->where('interest_on',$list->id)->first();?>
+                   
+                    </div>
+                    <div class="pro-ave" title="User currently available">
+                        <span class="pro-ave-yes"></span>
+                    </div>
+                    <a href="<?php echo e(url('/user/profile_detail_view')); ?>/<?php echo e($list->id); ?>" class="fclick">&nbsp;</a>
                     
-                        <?php
-                        $imagedata = json_decode($list->images, true);
-                        $firstimage = ($imagedata[0])?$imagedata[0]:"";
-                        ?>
-                <img src="<?php echo e(asset('/images/uploads/'.$firstimage)); ?>" alt="" class="profile">
-                <div>
-                    <h5><?php echo e($list->fullname); ?></h5>
-                    <span class="city"><?php echo e($list->city); ?></span>
-                    <span class="age"><?php echo e($list->age); ?> Years old</span>
                 </div>
-                <div class="pro-ave" title="User currently available">
-                    <span class="pro-ave-yes"></span>
-                </div>
-                <a href="<?php echo e(url('user/user_profile_detail')); ?>" class="fclick" target="_blank">&nbsp;</a>
-               
-            </div>
-        </li>
-        <?php endif; ?>
+                
+            </li>
+            <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
        
     </ul>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <ul>
+        <a href="<?php echo e(route('match-list')); ?>">
+            <li>
+                <div class="db-new-pro">
+                        
+                          
+                    <img src="<?php echo e(asset('public/images/uploads/showmore.jpg')); ?>" alt="" class="profile">
+                    <div>
+                        <h5>SHOW MORE</h5>
+                    
+                    
+                    </div>
+                </div>
+                
+            </li>
+        </a>
+    </ul>
 </div>
+
+
 <div class="row">
     <div class="col-md-12 col-lg-6 col-xl-4 db-sec-com">
         <h2 class="db-tit">Profiles status</h2>
@@ -132,7 +153,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="menu1" class="container tab-pane fade"><br>
+                            <div id="menu1" class="container tab-ane fade"><br>
                                 <div class="db-inte-prof-list">
                                     <ul>
                                         <li>

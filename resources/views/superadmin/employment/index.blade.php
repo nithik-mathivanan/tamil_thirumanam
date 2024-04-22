@@ -50,7 +50,7 @@
 													</td>
 													<td>
 														<a href="{{url('admin/employment/delete')}}/{{$data->id}}">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>

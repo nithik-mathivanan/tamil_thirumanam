@@ -12,6 +12,21 @@ class Profile extends Model
         'pcustomer_id',
         'images'
     ];
+
+    public function getUser(){
+        return $this->hasOne('App\Models\User','id','user_id');
+    } 
+
+    public function getImages(){
+        return $this->hasOne('App\Models\ProfileImage','user_id','user_id');
+    } 
+    public function getReligion(){
+        return $this->hasOne('App\Models\Religion','id','religion');
+    }  
+
+
+    
 }
+
 
 

@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
 <div class="content">
@@ -50,7 +49,7 @@
 													</td>
 													<td>
 														<a href="<?php echo e(url('admin/employment/delete')); ?>/<?php echo e($data->id); ?>">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>

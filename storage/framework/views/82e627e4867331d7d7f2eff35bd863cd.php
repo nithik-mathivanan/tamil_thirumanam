@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <?php $__env->startSection('title','Tamil Thirumanam | Dashboard'); ?>
 <script type="text/javascript">
@@ -64,8 +63,8 @@
 														<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModel" data-whatever="@mdo" onclick="edit(<?php echo e($data->id); ?>)"><i class="fa fa-pencil"></i></button>
 													</td>
 													<td>
-														<a href="<?php echo e(url('admin/occupation/delete')); ?>/<?php echo e($data->id); ?>">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+														<a href="<?php echo e(url('admin/Occupation/delete')); ?>/<?php echo e($data->id); ?>">
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
 													</td>
 												</tr>

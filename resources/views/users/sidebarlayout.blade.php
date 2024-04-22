@@ -16,11 +16,11 @@
                         $firstimage = ($imagedata[0])?$imagedata[0]:"";
                         }
                         @endphp
-                        <img src="{{asset('/images/uploads/'.$firstimage)}}" class="img-fluid" alt="">
+                        <img src="{{asset('public/images/uploads/'.$firstimage)}}" class="img-fluid" alt="">
                         @endforeach
                         </div>
                           <div class="db-nav-list">
-                            @if(session()->has('USERS_ID'))
+                            @if(Auth::user()->id)
 					        <ul>
 					            <li><a href="{{url('user/dashboard')}}" class="act"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
 					            <li><a href="{{url('user/profile_view')}}"><i class="fa fa-male" aria-hidden="true"></i>Profile</a></li>

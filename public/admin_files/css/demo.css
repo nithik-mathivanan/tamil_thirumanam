@@ -6,6 +6,7 @@
 .main-header{
 	position: fixed;
 	top:0px !important;
+	background: #218851;
 }
 .flash-message{
 	background-color: #2ac98e;
@@ -125,4 +126,49 @@
 
 .from-show-notify label{
 	padding-top: 0.65rem;
+}
+/**********************top bar*********************/
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+  display: block;
+  z-index: 1;
+  color: $white-color;
+  font-weight: 200;
+  background: rgb(254 230 139 );
+}
+.sidebar .nav .nav-item a p {
+    font-size: 14px;
+    margin-bottom: 0px;
+    letter-spacing: .04em;
+    margin-right: 5px;
+    color:black;
+}
+
+.main-header .logo-header a.logo {
+    color: white;
+}
+.sidebar .user .info a > span .user-level {
+    color: black;
+}
+.sidebar .user .info a > span,.la-dashboard:before, .la-table:before, .la-keyboard-o:before {
+    color: black;
+}
+.sidebar .user .info .caret {
+    position: absolute;
+    top: 17px;
+    right: 0px;
+    border-top-color: black;
+}
+.la-envelope:before, .la-bell:before, .navbar-header .dropdown-toggle::after{
+	color: white;
+}
+.status-lable{
+	padding: 2px 5px 2px 5px;
+	display: inline-block;
+	border-radius: 5px;
+	font-weight: bold;
 }

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Profile\Users;
+use App\Models\User;
 use App\Models\Religion;
+use App\Models\Language;
 use App\Models\Jobtype;
+use App\Models\States;
 use App\Models\Familystatus;
+use App\Models\Community;
+use App\Models\Cities;
 use App\Models\Familytype;
 use App\Models\Familyvalue;
 use App\Models\Parentalstatus;
@@ -16,42 +20,67 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Storage;
+use Auth;
 
 error_reporting(0);
 
 class UserProfileController extends Controller
 {
     
-    public function profile_details(Request $request ,$id)
-    {
-        $result['data']=DB::table('users')
+    public function profile_details(Request $request ,$id){
+    
+    $result['data']=DB::table('users')
           ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
           ->where(['users.status'=>1])
           ->where(['rand_id'=>$id])->get();
-          $religion = Religion::where('status',0)->where('is_deleted',0)->get();
-          $jobtype = Jobtype::where('status',0)->where('is_deleted',0)->get();
-          $education = Education::where('status',0)->where('is_deleted',0)->get();
-          $familystatus = Familystatus::where('status',0)->where('is_deleted',0)->get();
-          $familytype = Familytype::where('status',0)->where('is_deleted',0)->get();
-          $familyvalue = Familyvalue::where('status',0)->where('is_deleted',0)->get();
-          $parentalstatus = Parentalstatus::where('status',0)->where('is_deleted',0)->get();
-          $eatinghabbit = Eatinghabbit::where('status',0)->where('is_deleted',0)->get();
+    $community = Community::where('status',0)->where('is_deleted',0)->get();
+    $religion = Religion::where('status',0)->where('is_deleted',0)->get();
+
+    $jobtype = Jobtype::where('status',0)->where('is_deleted',0)->get();
+    $education = Education::where('status',0)->where('is_deleted',0)->get();
+    $familystatus = Familystatus::where('status',0)->where('is_deleted',0)->get();
+    $familytype = Familytype::where('status',0)->where('is_deleted',0)->get();
+    $familyvalue = Familyvalue::where('status',0)->where('is_deleted',0)->get();
+    $parentalstatus = Parentalstatus::where('status',0)->where('is_deleted',0)->get();
+    $eatinghabbit = Eatinghabbit::where('status',0)->where('is_deleted',0)->get();
+    $language = Language::where('status',0)->where('is_deleted',0)->get();
+    $state = States::where('country_id',101)->where('status',0)->where('is_deleted',0)->get();
         
 
 
 
-
-        return view('users.profile_details',$result)->with(['religion'=>$religion,'jobtype'=>$jobtype,'education'=>$education,'familystatus'=>$familystatus,'familytype'=>$familytype,'familyvalue'=>$familyvalue,'parentalstatus'=>$parentalstatus,'eatinghabbit'=>$eatinghabbit,]);
+        return view('users.profile_details',$result)->with(['religion'=>$religion,'jobtype'=>$jobtype,'education'=>$education,'familystatus'=>$familystatus,'familytype'=>$familytype,'familyvalue'=>$familyvalue,'parentalstatus'=>$parentalstatus,'eatinghabbit'=>$eatinghabbit,'language'=>$language,'community'=>$community,'state'=>$state]);
     }
 
-    public function manage_profile_details(Request $request)
-    
-    {
-
+    function editprofile_details($id){
+        $result['data']=DB::table('users')
+          ->leftJoin('profiles','profiles.customer_id','=','users.rand_id')
+          ->where(['users.status'=>2])
+          ->where(['rand_id'=>$id])->get();
         
-     $arr=[
+          $state_id = States::where('name',$result['data'][0]->state)->first()->id;
+           
+        $community = Community::where('status',0)->where('is_deleted',0)->get();
+        $religion = Religion::where('status',0)->where('is_deleted',0)->get();
+        $jobtype = Jobtype::where('status',0)->where('is_deleted',0)->get();
+        $education = Education::where('status',0)->where('is_deleted',0)->get();
+        $familystatus = Familystatus::where('status',0)->where('is_deleted',0)->get();
+        $familytype = Familytype::where('status',0)->where('is_deleted',0)->get();
+        $familyvalue = Familyvalue::where('status',0)->where('is_deleted',0)->get();
+        $parentalstatus = Parentalstatus::where('status',0)->where('is_deleted',0)->get();
+        $eatinghabbit = Eatinghabbit::where('status',0)->where('is_deleted',0)->get();
+        $language = Language::where('status',0)->where('is_deleted',0)->get();
+        $state = States::where('country_id',101)->where('status',0)->where('is_deleted',0)->get();
+        $district = Cities::where('state_id',$state_id)->where('status',0)->where('is_deleted',0)->get();
 
+        return view('users.edit_profile_details',$result)->with(['religion'=>$religion,'jobtype'=>$jobtype,'education'=>$education,'familystatus'=>$familystatus,'familytype'=>$familytype,'familyvalue'=>$familyvalue,'parentalstatus'=>$parentalstatus,'eatinghabbit'=>$eatinghabbit,'language'=>$language,'community'=>$community,'state'=>$state,'district'=>$district]);
+    }
+
+    public function manage_profile_details(Request $request){
+       
+        $arr=[
             "fullname"=>$request->fullname,
+            "user_id"=>Auth::user()->id,
             "customer_id"=>$request->pid,
             "dob"=>$request->dob,
             "age"=>$request->age,
@@ -88,7 +117,7 @@ class UserProfileController extends Controller
             "smarried"=>$request->smarried,
             "state"=>$request->state,
             "district"=>$request->district,
-            "city"=>$request->city,
+            "city"=>$request->district,
             "pincode"=>$request->pincode,
             "instagram"=>$request->insta,
             "facebook"=>$request->facebook,
@@ -97,19 +126,28 @@ class UserProfileController extends Controller
             "eatinghabit"=>$request->eating,
             "drinkshabit"=>$request->drinking,
             "smokinghabit"=>$request->smoking,
-            "hobbies"=>$request->hobbies,
+            // "hobbies"=>implode(',', $request->hobbies),
             "status"=>2,
             "created_at"=>date('Y-m-d h:i:s'),
             "updated_on"=>date('Y-m-d h:i:s')
         ];
-        
 
-       
+        if(DB::table('profiles')->where(['customer_id'=>$request->pid])->exists()){
+            $query=DB::table('profiles')->where(['customer_id'=>$request->pid])->update($arr);
+            return redirect('user/profile_view');  
+            $request->session()->flash('message','Congratulations!!! Profile Updated');
+           
+        }
+        else
+        {
             $query=DB::table('profiles')->insert($arr);
-            return redirect('user/dashboard');
-      
+            return redirect('user/preferred_details/'.$request->pid)->with('success','Upload Your Photos!!!');
+        }
+
      
      $request->session()->flash('message','Your Signup was Verified.');
+     
+   
      
     }
     
@@ -126,6 +164,7 @@ public function preferred_details(Request $request ,$id)
 
 public function manage_preferred_details(Request $request)
     {
+     
        
        if($request->hasfile('images')) {
         foreach($request->file('images') as $file)
@@ -135,25 +174,25 @@ public function manage_preferred_details(Request $request)
             $imgData[] = $name;  
         }
         $image_name=json_encode($imgData);
-        
-        if(DB::table('profile_images')->where(['pcustomer_id'=>$request->pcustomer_id])->exists())
+        $image_exsist = DB::table('profile_images')->where(['pcustomer_id'=>$request->pcustomer_id])->first();
+        if($image_exsist)
         {
-            if(Auth::user()->id)
-            {
+
+            $res = str_replace( array( '[', ']',),'', $image_exsist->images);
+            $res2 = str_replace( array( '[', ']',),'', $image_name);
+           $image_name = '['.$res.','.$res2.']';
             $result=DB::table('profile_images')->where(['pcustomer_id'=>$request->pcustomer_id])->update([
             'images'=>$image_name
-            ]);    
+            ]);  
+           
             return redirect('user/dashboard');
-            }
-            else
-            {
-                return redirect('user/preferred_details/'.$request->pcustomer_id);
-            }
+            
             
         }
         else
         {
             $result=DB::table('profile_images')->insert([
+            "user_id"=>Auth::user()->id,
             'pcustomer_id'=>$request->pcustomer_id,
             'images'=>$image_name
             ]);

@@ -58,7 +58,7 @@
                                                         <button class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
                                                         </a>
                                                      <a href="<?php echo e(url('admin/religion/delete')); ?>/<?php echo e($data->id); ?>">
-                                                        <button class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                         </a>
                                                     </td>
 												</tr>
